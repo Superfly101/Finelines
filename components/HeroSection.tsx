@@ -13,7 +13,7 @@ const HeroSection = () => {
         />
       </div> */}
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl text-primary font-bold">
+        <h1 className="text-4xl text-secondary font-bold">
           In need of a pick up line to show a bit of your intentions and get
           that conversation started?
         </h1>
@@ -28,7 +28,7 @@ const HeroSection = () => {
         <h2 className="text-xl text-secondary font-[500]">
           Or have you got a pick up line you would like to share?
         </h2>
-        <button className="py-2 px-6 text-white bg-primary border-2 border-primary rounded-full hover:text-primary hover:bg-transparent">
+        <button className="py-1 px-6 text-white bg-primary border-2 border-primary rounded-full hover:text-primary hover:bg-transparent">
           Add pickup line
         </button>
       </div>
