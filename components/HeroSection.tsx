@@ -1,6 +1,12 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const HeroSection = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/login");
+  };
   return (
     <section className="px-4 pb-8 max-w-[70rem] mx-auto flex flex-col text-center gap-8 min-h-[calc(100vh-80px)] justify-center md: gap-16 md:px-8">
       {/* <div className="flex justify-center">
@@ -28,7 +34,10 @@ const HeroSection = () => {
         <h2 className="text-xl text-secondary font-[500]">
           Or have you got a pick up line you would like to share?
         </h2>
-        <button className="py-1 px-6 text-white bg-primary border-2 border-primary rounded-full hover:text-primary hover:bg-transparent">
+        <button
+          className="py-1 px-6 text-white bg-primary border-2 border-primary rounded-full hover:text-primary hover:bg-transparent"
+          onClick={handleClick}
+        >
           Add pickup line
         </button>
       </div>
