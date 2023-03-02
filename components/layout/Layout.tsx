@@ -1,10 +1,10 @@
 import Header from "./Header";
 
-const Layout: React.FC<{ children: React.ReactNode }> = (props) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      <main className="bg-tertiary">{props.children}</main>
+      <main className="bg-tertiary">{children}</main>
     </>
   );
 };
