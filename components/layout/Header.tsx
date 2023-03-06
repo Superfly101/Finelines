@@ -16,8 +16,11 @@ const Header = () => {
           <Link href="/">Finelines</Link>
         </h2>
       </div>
-      <div>
+      <div className="flex gap-4">
         <Button onClick={handleClick}>Add pick up line</Button>
+        <Button type="secondary" onClick={handleClick}>
+          Login
+        </Button>
       </div>
     </header>
   );

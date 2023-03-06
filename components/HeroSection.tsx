@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Button from "./UI/Button";
 
 const HeroSection = () => {
   const router = useRouter();
@@ -32,14 +33,9 @@ const HeroSection = () => {
 
       <div className="flex flex-col items-center gap-2">
         <h2 className="text-xl text-secondary font-[500]">
-          Or have you got a pick up line you would like to share?
+          Otherwise, if you got a pick up line you would like to share
         </h2>
-        <button
-          className="py-1 px-6 text-white bg-primary border-2 border-primary rounded-full hover:text-primary hover:bg-transparent"
-          onClick={handleClick}
-        >
-          Add pickup line
-        </button>
+        <Button onClick={handleClick}>Add pick up line</Button>
       </div>
     </section>
   );
