@@ -1,5 +1,6 @@
 import PickupLine from "@/models/pickupLine";
-import Card from "./UI/Card";
+import PickupLineItem from "./PickupLineItem";
+import Card from "./ui/Card";
 
 const PickupLinesList = () => {
   const PICKUP_LINE_LIST: PickupLine[] = [
@@ -33,13 +34,12 @@ const PickupLinesList = () => {
     <section>
       <ul className="p-4 flex flex-col gap-2">
         {PICKUP_LINE_LIST.map((pickupLine) => (
-          <li key={pickupLine.id} className="w-full max-w-[60rem] mx-auto">
-            <Card>
-              <p>{pickupLine.user}</p>
-              <p>{pickupLine.text}</p>
-              <p>{pickupLine.category}</p>
-            </Card>
-          </li>
+          <PickupLineItem
+            key={pickupLine.id}
+            user={pickupLine.user}
+            text={pickupLine.text}
+            category={pickupLine.category}
+          />
         ))}
       </ul>
     </section>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Button from "../UI/Button";
+import Button from "../ui/Button";
 
 const Header = () => {
   const router = useRouter();
