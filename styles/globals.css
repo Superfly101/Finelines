@@ -11,9 +11,6 @@
   form label {
     @apply text-secondary font-[500];
   }
-  /* h2 {
-    @apply text-xl;
-  } */
 }
 
 @layer components {
