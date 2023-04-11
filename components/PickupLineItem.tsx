@@ -6,19 +6,16 @@ import IconButton from "./ui/IconButton";
 type ItemProp = {
   user: string;
   text: string;
-  category: string[];
+  tags: string[];
 };
 
-const PickupLineItem = ({ user, text, category }: ItemProp) => {
+const PickupLineItem = ({ user, text, tags }: ItemProp) => {
   return (
     <li className="flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
       <div>
-        <p className="flex gap-2 items-center">
-          <small>Submitted by</small>
-          {user}
-        </p>
-        <p className="font-[500]">{text}</p>
-        <small>Tags: {category}</small>
+        <p className="flex gap-2 items-center font-[500]">{user}</p>
+        <p className="py-2">{text}</p>
+        {tags && <small>Tags: {tags}</small>}
       </div>
       <div className="flex justify-between md:max-w-[30rem]">
         <IconButton icon={<LikeIcon />}>Like</IconButton>
