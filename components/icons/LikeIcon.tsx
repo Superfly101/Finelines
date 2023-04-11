@@ -3,7 +3,7 @@ const LikeIcon = () => {
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-6 fill-transparent stroke-black hover:fill-primary hover:stroke-primary"
+        className="w-6 fill-transparent stroke-current hover:fill-primary hover:stroke-primary"
         viewBox="0 0 512 512"
       >
         <path
