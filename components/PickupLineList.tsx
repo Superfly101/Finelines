@@ -1,6 +1,5 @@
 import PickupLine from "@/models/pickupLine";
 import PickupLineItem from "./PickupLineItem";
-import Card from "./ui/Card";
 
 const PickupLinesList = () => {
   const PICKUP_LINE_LIST: PickupLine[] = [
@@ -8,25 +7,25 @@ const PickupLinesList = () => {
       id: "1",
       text: "You look single, I wanna put an end to your single life",
       user: "Superfly",
-      category: ["Lovely"],
+      tags: ["Lovely"],
     },
     {
       id: "2",
       text: "I'll rather lie with you than lie to you",
       user: "Superfly",
-      category: ["Dirty"],
+      tags: ["Dirty"],
     },
     {
       id: "3",
       text: "I would have loved you to be my sunshine to brighten up my day. But I'd prefer you to be my moon to brighten up my night cuse, at night is when I need you the most",
       user: "Superfly",
-      category: ["Romance"],
+      tags: ["Romance"],
     },
     {
       id: "4",
       text: "Hi, do you hook up with strangers or should I introduce myself first.",
       user: "Superfly",
-      category: ["Dirty"],
+      tags: ["Dirty"],
     },
   ];
 
@@ -38,7 +37,7 @@ const PickupLinesList = () => {
             key={pickupLine.id}
             user={pickupLine.user}
             text={pickupLine.text}
-            category={pickupLine.category}
+            tags={pickupLine.tags}
           />
         ))}
       </ul>

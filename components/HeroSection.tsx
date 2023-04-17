@@ -31,9 +31,11 @@ const HeroSection = () => {
         </h2>
       </div>
 
+      <h2 className="text-primary font-bold text-3xl">OR,</h2>
+
       <div className="flex flex-col items-center gap-2">
         <h2 className="text-xl text-secondary font-[500]">
-          Otherwise, if you got a pick up line you would like to share
+          Have you got a pick up line you would like to share?
         </h2>
         <Button onClick={handleClick}>Add pick up line</Button>
       </div>

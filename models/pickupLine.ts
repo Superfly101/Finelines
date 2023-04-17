@@ -2,7 +2,7 @@ type PickupLine = {
   id: string;
   text: string;
   user: string;
-  category: string[];
+  tags: string[];
 };
 
 export default PickupLine;
