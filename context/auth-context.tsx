@@ -1,41 +1,20 @@
+import { User } from "@/models/User";
+import { AuthActionType, authInitialState, authReducer } from "@/reducers/auth";
 import { createContext, Dispatch, useEffect, useReducer } from "react";
 
 type CtxProp = {
   children: React.ReactNode;
 };
 
-type User = {
-  username: string;
-  email: string;
-  token: string;
-};
-
 type AuthContextType = {
   user: User | null;
-  dispatch: Dispatch<ACTIONTYPE>;
+  dispatch: Dispatch<AuthActionType>;
 };
-
-const initialState = {
-  user: null,
-};
-
-type ACTIONTYPE = { type: "LOGIN"; payload: any } | { type: "LOGOUT" };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export const authReducer = (state: typeof initialState, action: ACTIONTYPE) => {
-  switch (action.type) {
-    case "LOGIN":
-      return { user: action.payload };
-    case "LOGOUT":
-      return { user: null };
-    default:
-      return state;
-  }
-};
-
 const AuthContextProvider = ({ children }: CtxProp) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, authInitialState);
 
   useEffect(() => {
     const data = localStorage.getItem("user");
