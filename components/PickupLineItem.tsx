@@ -1,3 +1,4 @@
+import BookmarkIcon from "./icons/BookmarkIcon";
 import CommentIcon from "./icons/CommentIcon";
 import LikeIcon from "./icons/LikeIcon";
 import ShareIcon from "./icons/ShareIcon";
@@ -17,10 +18,11 @@ const PickupLineItem = ({ user, text, tags }: ItemProp) => {
         <p className="py-2">{text}</p>
         {tags && <small>Tags: {tags}</small>}
       </div>
-      <div className="flex justify-between md:max-w-[30rem]">
+      <div className="flex gap-2 justify-between">
         <IconButton icon={<LikeIcon />}>Like</IconButton>
         <IconButton icon={<CommentIcon />}>Comment</IconButton>
         <IconButton icon={<ShareIcon />}>Share</IconButton>
+        <IconButton icon={<BookmarkIcon />}>Bookmark</IconButton>
       </div>
     </li>
   );
