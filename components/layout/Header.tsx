@@ -19,10 +19,7 @@ const Header = () => {
       <nav className="flex gap-4">
         {user && (
           <div className="flex gap-4">
-            <div className="flex gap-1 items-end">
-              <Avatar size="sm" name={user.username} />
-              <p className="font-[500]">{user.username}</p>
-            </div>
+            <Avatar size="sm" name={user.username} />
             <button onClick={handleClick}>Logout</button>
           </div>
         )}
