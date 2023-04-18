@@ -1,45 +1,36 @@
-const PickupLineList = () => {
-  // const PICKUP_LINE_LIST: PickupLine[] = [
-  //   {
-  //     id: "1",
-  //     text: "You look single, I wanna put an end to your single life",
-  //     user: "Superfly",
-  //     tags: ["Lovely"],
-  //   },
-  //   {
-  //     id: "2",
-  //     text: "I'll rather lie with you than lie to you",
-  //     user: "Superfly",
-  //     tags: ["Dirty"],
-  //   },
-  //   {
-  //     id: "3",
-  //     text: "I would have loved you to be my sunshine to brighten up my day. But I'd prefer you to be my moon to brighten up my night cuse, at night is when I need you the most",
-  //     user: "Superfly",
-  //     tags: ["Romance"],
-  //   },
-  //   {
-  //     id: "4",
-  //     text: "Hi, do you hook up with strangers or should I introduce myself first.",
-  //     user: "Superfly",
-  //     tags: ["Dirty"],
-  //   },
-  // ];
+import { FinelineContext } from "@/context/fineline-context";
+import useAuthContext from "@/hooks/useAuthContext";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
+import { useContext, useEffect } from "react";
+import PickupLineItem from "./PickupLineItem";
 
+const PickupLinesList = () => {
+  const { user } = useAuthContext();
+  const { finelines, dispatch } = useFinelinesContext();
+  useEffect(() => {
+    const fetchFinelines = async () => {
+      const response = await fetch("http://localhost:5000/api/pickup-lines", {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "GET_FINELINES", payload: data });
+      }
+    };
+
+    fetchFinelines();
+  }, []);
   return (
     <section>
       <ul className="p-4 flex flex-col gap-2">
-        {/* {PICKUP_LINE_LIST.map((pickupLine) => (
-          <PickupLineItem
-            key={pickupLine.id}
-            user={pickupLine.user}
-            text={pickupLine.text}
-            tags={pickupLine.tags}
-          />
-        ))} */}
+        {finelines.map((fineline) => (
+          <PickupLineItem {...fineline} key={fineline._id} />
+        ))}
       </ul>
     </section>
   );
 };
 
-export default PickupLineList;
+export default PickupLinesList;

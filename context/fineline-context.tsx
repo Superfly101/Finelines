@@ -11,7 +11,9 @@ type FinelineContextType = {
   dispatch: Dispatch<FinelineActionType>;
 };
 
-const FinelineContext = React.createContext<FinelineContextType | null>(null);
+export const FinelineContext = React.createContext<FinelineContextType | null>(
+  null
+);
 
 const FinelineContextProvider = ({ children }: CtxProp) => {
   const [state, dispatch] = useReducer(FinelinesReducer, initialState);

@@ -1,3 +1,4 @@
+import { PickupLine } from "@/models/pickupLine";
 import { useState } from "react";
 import CommentSection from "./CommentSection";
 import BookmarkIcon from "./icons/BookmarkIcon";
@@ -6,11 +7,7 @@ import LikeIcon from "./icons/LikeIcon";
 import ShareIcon from "./icons/ShareIcon";
 import IconButton from "./ui/IconButton";
 
-type ItemProp = {
-  user: string;
-  text: string;
-  tags: string[];
-};
+type ItemProp = PickupLine;
 
 const PickupLineItem = ({ user, text, tags }: ItemProp) => {
   const [showComments, setShowComments] = useState(false);
