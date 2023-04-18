@@ -1,7 +1,4 @@
-import { PickupLine } from "@/models/pickupLine";
-import PickupLineItem from "./PickupLineItem";
-
-const PickupLinesList = () => {
+const PickupLineList = () => {
   // const PICKUP_LINE_LIST: PickupLine[] = [
   //   {
   //     id: "1",
@@ -45,4 +42,4 @@ const PickupLinesList = () => {
   );
 };
 
-export default PickupLinesList;
+export default PickupLineList;
