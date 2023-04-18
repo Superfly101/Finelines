@@ -1,3 +1,5 @@
+import { useState } from "react";
+import CommentSection from "./CommentSection";
 import BookmarkIcon from "./icons/BookmarkIcon";
 import CommentIcon from "./icons/CommentIcon";
 import LikeIcon from "./icons/LikeIcon";
@@ -11,6 +13,11 @@ type ItemProp = {
 };
 
 const PickupLineItem = ({ user, text, tags }: ItemProp) => {
+  const [showComments, setShowComments] = useState(false);
+
+  const handleLike = () => {};
+  const handleShare = () => {};
+  const handleBookmark = () => {};
   return (
     <li className="flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
       <div>
@@ -19,11 +26,24 @@ const PickupLineItem = ({ user, text, tags }: ItemProp) => {
         {tags && <small>Tags: {tags}</small>}
       </div>
       <div className="flex gap-2 justify-between">
-        <IconButton icon={<LikeIcon />}>Like</IconButton>
-        <IconButton icon={<CommentIcon />}>Comment</IconButton>
-        <IconButton icon={<ShareIcon />}>Share</IconButton>
-        <IconButton icon={<BookmarkIcon />}>Bookmark</IconButton>
+        <IconButton onClick={handleLike} icon={<LikeIcon />}>
+          Like
+        </IconButton>
+        <IconButton
+          icon={<CommentIcon />}
+          onClick={() => setShowComments(true)}
+        >
+          Comment
+        </IconButton>
+        <IconButton onClick={handleShare} icon={<ShareIcon />}>
+          Share
+        </IconButton>
+        <IconButton onClick={handleBookmark} icon={<BookmarkIcon />}>
+          Bookmark
+        </IconButton>
       </div>
+
+      {showComments && <CommentSection />}
     </li>
   );
 };
