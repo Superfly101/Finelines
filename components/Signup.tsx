@@ -4,10 +4,14 @@ import { useState } from "react";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassord] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+
+  const { username, email, password, password2 } = formData;
   const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -35,7 +39,12 @@ const Signup = () => {
               type="text"
               placeholder="Username"
               id="username"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  [e.target.id]: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="form-control">
@@ -44,7 +53,12 @@ const Signup = () => {
               type="email"
               placeholder="Email"
               id="email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  [e.target.id]: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="form-control">
@@ -53,16 +67,26 @@ const Signup = () => {
               type="password"
               placeholder="Password"
               id="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  [e.target.id]: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="form-control">
-            <label htmlFor="confirm">Confirm Password</label>
+            <label htmlFor="password2">Confirm Password</label>
             <input
               type="password"
               placeholder="Password"
-              id="confirm"
-              onChange={(e) => setConfirmPassord(e.target.value)}
+              id="password2"
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  [e.target.id]: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="mt-4 form-control">
