@@ -5,16 +5,16 @@
 
 @layer base {
   form input {
-    @apply px-4 py-2 bg-transparent w-full border text-secondary border-secondary rounded-lg outline-secondary;
+    @apply px-3 py-2 bg-transparent w-full border text-sm text-secondary border-secondary rounded-lg outline-secondary;
   }
 
   form label {
-    @apply text-secondary font-[500];
+    @apply text-secondary font-[500] text-sm;
   }
 }
 
 @layer components {
   .form-control {
-    @apply flex flex-col gap-1;
+    @apply flex flex-col gap-2;
   }
 }

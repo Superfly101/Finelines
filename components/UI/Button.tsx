@@ -14,7 +14,7 @@ const Button = ({ children, onClick, className, type }: ButtonProp) => {
       : "";
   return (
     <button
-      className={`py-2 px-8 border-2 rounded-full ${
+      className={`py-1 px-4 border-2 rounded-full ${
         !type ? primaryBtnClass : secondaryBtnClass
       } ${className}`}
       onClick={onClick}
