@@ -6,7 +6,7 @@ const useSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  const signup = async (username: String, email: String, password: String) => {
+  const signup = async (username: string, email: string, password: string) => {
     setIsLoading(true);
     setError("");
 

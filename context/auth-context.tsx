@@ -5,9 +5,9 @@ type CtxProp = {
 };
 
 type User = {
-  username: String;
-  email: String;
-  token: String;
+  username: string;
+  email: string;
+  token: string;
 };
 
 type AuthContextType = {

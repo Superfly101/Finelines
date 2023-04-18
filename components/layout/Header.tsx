@@ -1,8 +1,11 @@
+import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
+import { Avatar } from "@chakra-ui/react";
 import Link from "next/link";
 
 const Header = () => {
   const { logout } = useLogout();
+  const { user } = useAuthContext();
   const handleClick = () => {
     logout();
   };
@@ -14,9 +17,21 @@ const Header = () => {
         </h2>
       </div>
       <nav className="flex gap-4">
-        <button onClick={handleClick}>Logout</button>
-        <Link href="/login">Login</Link>
-        <Link href="/signup">Signup</Link>
+        {user && (
+          <div className="flex gap-4">
+            <p className="font-bold">
+              <Avatar name={user.username} />
+              {user.username}
+            </p>
+            <button onClick={handleClick}>Logout</button>
+          </div>
+        )}
+        {!user && (
+          <div className="flex gap-4">
+            <Link href="/login">Login</Link>
+            <Link href="/signup">Signup</Link>
+          </div>
+        )}
       </nav>
     </header>
   );
