@@ -24,7 +24,7 @@ const Login = () => {
 
             <small className="text-primary text-center font-[500]">
               Don't have an account?{" "}
-              <Link href="/register">
+              <Link href="/signup">
                 <span className="underline">Register</span>
               </Link>
             </small>
