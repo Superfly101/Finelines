@@ -4,8 +4,14 @@ type CtxProp = {
   children: React.ReactNode;
 };
 
+type User = {
+  username: String;
+  email: String;
+  token: String;
+};
+
 type AuthContextType = {
-  user: null;
+  user: User | null;
   dispatch: Dispatch<ACTIONTYPE>;
 };
 
@@ -13,7 +19,7 @@ const initialState = {
   user: null,
 };
 
-type ACTIONTYPE = { type: "LOGIN"; payload: null } | { type: "LOGOUT" };
+type ACTIONTYPE = { type: "LOGIN"; payload: any } | { type: "LOGOUT" };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -30,6 +36,8 @@ export const authReducer = (state: typeof initialState, action: ACTIONTYPE) => {
 
 const AuthContextProvider = ({ children }: CtxProp) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+
+  console.log("AuthContext state: ", state);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
