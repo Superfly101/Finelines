@@ -1,4 +1,4 @@
-import { createContext, Dispatch, useReducer } from "react";
+import { createContext, Dispatch, useEffect, useReducer } from "react";
 
 type CtxProp = {
   children: React.ReactNode;
@@ -36,6 +36,15 @@ export const authReducer = (state: typeof initialState, action: ACTIONTYPE) => {
 
 const AuthContextProvider = ({ children }: CtxProp) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+
+    if (data) {
+      const user = JSON.parse(data);
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  }, []);
 
   console.log("AuthContext state: ", state);
 
