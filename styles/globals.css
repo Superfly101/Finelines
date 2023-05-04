@@ -11,6 +11,11 @@
   form label {
     @apply text-secondary font-[500] text-sm;
   }
+
+  p,
+  a {
+    @apply text-black;
+  }
 }
 
 @layer components {
