@@ -1,11 +1,13 @@
-import useAuthContext from "@/hooks/useAuthContext";
 import { Comment } from "@/models/Comment";
 import { useEffect, useState } from "react";
+import AddComment from "./AddComment";
 import CommentItem from "./Comment";
 
 const CommentList = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comment[]>([]);
-  const { user } = useAuthContext();
+  const handleAddComment = (comment: Comment) => {
+    setComments((prev) => [comment, ...prev]);
+  };
   useEffect(() => {
     const fetchComments = async () => {
       const response = await fetch(
@@ -25,11 +27,14 @@ const CommentList = ({ id }: { id: string }) => {
     fetchComments();
   }, []);
   return (
-    <ul>
-      {comments.map((comment, index) => (
-        <CommentItem key={index} {...comment} />
-      ))}
-    </ul>
+    <section>
+      <AddComment id={id} addComment={handleAddComment} />
+      <ul>
+        {comments.map((comment, index) => (
+          <CommentItem key={index} {...comment} />
+        ))}
+      </ul>
+    </section>
   );
 };
 

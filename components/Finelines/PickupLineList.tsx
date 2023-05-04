@@ -1,5 +1,3 @@
-import { FinelineContext } from "@/context/fineline-context";
-import useAuthContext from "@/hooks/useAuthContext";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { useContext, useEffect } from "react";
 import PickupLineItem from "./PickupLineItem";
