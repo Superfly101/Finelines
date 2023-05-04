@@ -3,7 +3,7 @@ import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
 import { Avatar } from "@chakra-ui/react";
 import { useState } from "react";
-import CommentSection from "../Comment/CommentSection";
+import CommentSection from "../Comments/CommentSection";
 import BookmarkIcon from "../icons/BookmarkIcon";
 import CommentIcon from "../icons/CommentIcon";
 import LikeIcon from "../icons/LikeIcon";
