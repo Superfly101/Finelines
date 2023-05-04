@@ -5,13 +5,10 @@ import { useContext, useEffect } from "react";
 import PickupLineItem from "./PickupLineItem";
 
 const PickupLinesList = () => {
-  const { user } = useAuthContext();
   const { finelines, dispatch } = useFinelinesContext();
   useEffect(() => {
     const fetchFinelines = async () => {
-      const response = await fetch("http://localhost:5000/api/pickup-lines", {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      });
+      const response = await fetch("http://localhost:5000/api/pickup-lines");
 
       const data = await response.json();
 

@@ -1,10 +1,10 @@
 import { Avatar } from "@chakra-ui/react";
 import CommentList from "./CommentList";
 
-const CommentSection = () => {
+const CommentSection = ({ id }: { id: string }) => {
   return (
     <section>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center py-2">
         <Avatar />
         <form className="w-full">
           <input
@@ -14,7 +14,7 @@ const CommentSection = () => {
           />
         </form>
       </div>
-      <CommentList />
+      <CommentList id={id} />
     </section>
   );
 };

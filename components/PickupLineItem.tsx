@@ -1,3 +1,5 @@
+import useAuthContext from "@/hooks/useAuthContext";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
 import { Avatar } from "@chakra-ui/react";
 import { useState } from "react";
@@ -10,14 +12,33 @@ import IconButton from "./ui/IconButton";
 
 type prop = PickupLine;
 
-const PickupLineItem = ({ user, text, tags, likes, comments }: prop) => {
+const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
   const [showComments, setShowComments] = useState(false);
+  const { user: currentUser } = useAuthContext();
+  const { dispatch } = useFinelinesContext();
 
-  const handleLike = () => {};
+  const handleLike = async () => {
+    const response = await fetch(
+      `http://localhost:5000/api/pickup-lines/${_id}/like`,
+      {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${currentUser?.token}` },
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.log(result);
+      return;
+    }
+
+    dispatch({ type: "LIKE_FINELINE", payload: result });
+  };
   const handleShare = () => {};
   const handleBookmark = () => {};
   return (
-    <li className="text-black flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
+    <li className="text-black f'lex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
       <div>
         <div className="flex gap-2">
           <Avatar />
@@ -58,7 +79,7 @@ const PickupLineItem = ({ user, text, tags, likes, comments }: prop) => {
         </IconButton>
       </div>
 
-      {showComments && <CommentSection />}
+      {showComments && <CommentSection id={_id} />}
     </li>
   );
 };
