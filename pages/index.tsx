@@ -1,5 +1,5 @@
 import HeroSection from "@/components/HeroSection";
-import PickupLineList from "@/components/PickupLineList";
+import PickupLineList from "@/components/Finelines/PickupLineList";
 import Head from "next/head";
 
 export default function Home() {

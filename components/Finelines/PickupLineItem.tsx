@@ -3,12 +3,12 @@ import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
 import { Avatar } from "@chakra-ui/react";
 import { useState } from "react";
-import CommentSection from "./CommentSection";
-import BookmarkIcon from "./icons/BookmarkIcon";
-import CommentIcon from "./icons/CommentIcon";
-import LikeIcon from "./icons/LikeIcon";
-import ShareIcon from "./icons/ShareIcon";
-import IconButton from "./ui/IconButton";
+import CommentSection from "../Comment/CommentSection";
+import BookmarkIcon from "../icons/BookmarkIcon";
+import CommentIcon from "../icons/CommentIcon";
+import LikeIcon from "../icons/LikeIcon";
+import ShareIcon from "../icons/ShareIcon";
+import IconButton from "../ui/IconButton";
 
 type prop = PickupLine;
 
