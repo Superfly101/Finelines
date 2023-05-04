@@ -18,8 +18,6 @@ export const FinelineContext = React.createContext<FinelineContextType | null>(
 const FinelineContextProvider = ({ children }: CtxProp) => {
   const [state, dispatch] = useReducer(FinelinesReducer, initialState);
 
-  console.log("FinelinesContext state: ", state);
-
   return (
     <FinelineContext.Provider value={{ ...state, dispatch }}>
       {children}
