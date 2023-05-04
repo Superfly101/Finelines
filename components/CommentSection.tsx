@@ -1,4 +1,5 @@
 import { Avatar } from "@chakra-ui/react";
+import CommentList from "./CommentList";
 
 const CommentSection = () => {
   return (
@@ -13,6 +14,7 @@ const CommentSection = () => {
           />
         </form>
       </div>
+      <CommentList />
     </section>
   );
 };

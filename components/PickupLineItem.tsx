@@ -1,4 +1,5 @@
 import { PickupLine } from "@/models/pickupLine";
+import { Avatar } from "@chakra-ui/react";
 import { useState } from "react";
 import CommentSection from "./CommentSection";
 import BookmarkIcon from "./icons/BookmarkIcon";
@@ -16,9 +17,12 @@ const PickupLineItem = ({ user, text, tags }: ItemProp) => {
   const handleShare = () => {};
   const handleBookmark = () => {};
   return (
-    <li className="flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
+    <li className="text-black flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
       <div>
-        <p className="flex gap-2 items-center font-[500]">{user}</p>
+        <div className="flex gap-2">
+          <Avatar />
+          <p className="flex gap-2 items-center font-[500]">{user}</p>
+        </div>
         <p className="py-2">{text}</p>
         {tags && <small>Tags: {tags}</small>}
       </div>
