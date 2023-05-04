@@ -1,11 +1,13 @@
 import useLogin from "@/hooks/useLogin";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
 const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const { login, error, isLoading } = useLogin();
 
@@ -31,6 +33,8 @@ const Login = () => {
     }
 
     await login(username, email, password);
+
+    router.push("/");
   };
 
   return (

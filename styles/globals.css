@@ -13,7 +13,8 @@
   }
 
   p,
-  a {
+  a,
+  small {
     @apply text-black;
   }
 }

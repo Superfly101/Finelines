@@ -46,7 +46,7 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
         </div>
         <p className="py-2">{text}</p>
         {tags && <small>Tags: {tags}</small>}
-        <div className="flex justify-between">
+        <div className="flex justify-between text-sm py-1">
           <p>
             {likes.length > 1
               ? `Liked by ${likes.length} people`
