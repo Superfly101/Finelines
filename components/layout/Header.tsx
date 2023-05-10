@@ -13,7 +13,7 @@ const Header = () => {
   const handleAddPickupline = () => {};
 
   return (
-    <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8">
+    <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between bg-white md:px-8">
       <div>
         <h2 className="text-3xl text-secondary font-bold">
           <Link href="/">Finelines</Link>

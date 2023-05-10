@@ -1,7 +1,15 @@
 import useSignup from "@/hooks/useSignup";
 import Link from "next/link";
 import { useState } from "react";
-import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -33,10 +41,9 @@ const Signup = () => {
           Sign Up
         </h2>
         <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit}>
-          <div className="form-control">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
+          <FormControl>
+            <FormLabel htmlFor="username">Username</FormLabel>
+            <Input
               placeholder="Username"
               id="username"
               onChange={(e) =>
@@ -46,12 +53,11 @@ const Signup = () => {
                 }))
               }
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              placeholder="Email"
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input
+              placeholder="Your email address"
               id="email"
               onChange={(e) =>
                 setFormData((prevState) => ({
@@ -60,11 +66,11 @@ const Signup = () => {
                 }))
               }
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
+          </FormControl>
+
+          <FormControl>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
               placeholder="Password"
               id="password"
               onChange={(e) =>
@@ -74,11 +80,10 @@ const Signup = () => {
                 }))
               }
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="password2">Confirm Password</label>
-            <input
-              type="password"
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="password2">Confirm Password</FormLabel>
+            <Input
               placeholder="Password"
               id="password2"
               onChange={(e) =>
@@ -88,14 +93,10 @@ const Signup = () => {
                 }))
               }
             />
-          </div>
+          </FormControl>
+
           <div className="mt-4 form-control">
-            <button
-              disabled={isLoading}
-              className="py-1 px-6 text-white bg-secondary border-2 border-secondary rounded-full disabled:opacity-60"
-            >
-              Sign Up
-            </button>
+            <Button disabled={isLoading}>Sign up</Button>
 
             <small className="text-primary text-center font-[500]">
               Have an existing account?{" "}
