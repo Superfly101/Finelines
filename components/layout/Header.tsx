@@ -1,8 +1,7 @@
 import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
-import { Avatar } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import Link from "next/link";
-import Button from "../ui/Button";
 
 const Header = () => {
   const { logout } = useLogout();
@@ -21,16 +20,23 @@ const Header = () => {
         </h2>
       </div>
       <nav className="flex gap-4 text-black items-center">
-        <Button onClick={handleAddPickupline}>Add pick up line</Button>
+        <Button onClick={handleAddPickupline} variant="outline">
+          Add lines
+        </Button>
         {user && (
           <div>
-            <button onClick={handleLogout}>Logout</button>
+            <Button onClick={handleLogout}>Logout</Button>
           </div>
         )}
         {!user && (
-          <div className="flex gap-4">
-            <Link href="/login">Login</Link>
-            <Link href="/signup">Signup</Link>
+          <div className="flex gap-4 items-center">
+            <Link href="/signup">Sign up</Link>
+            <Link
+              href="/login"
+              className="border border-blue text-blue py-1 px-4 rounded-full"
+            >
+              Sign in
+            </Link>
           </div>
         )}
       </nav>
