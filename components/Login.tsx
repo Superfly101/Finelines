@@ -1,5 +1,13 @@
 import useLogin from "@/hooks/useLogin";
-import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
@@ -50,31 +58,23 @@ const Login = () => {
           Login
         </h2>
         <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
-          <div className="form-control">
-            <label>Username or Email</label>
-            <input type="text" ref={userRef} />
-          </div>
-          <div className="form-control">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="mt-4 form-control">
-            <button
-              disabled={isLoading}
-              className="py-2 px-4 text-white text-sm bg-secondary rounded-full disabled:opacity-60"
-            >
+          <FormControl>
+            <FormLabel>Username or Email</FormLabel>
+            <Input ref={userRef} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Password</FormLabel>
+
+            <Input type="password" placeholder="Enter Password" />
+          </FormControl>
+
+          <div className="flex flex-col py-2 gap-2">
+            <Button colorScheme="blue" disabled={isLoading}>
               Login
-            </button>
+            </Button>
 
             <small className="text-center font-[500]">
-              Don't have an account?{" "}
-              <Link href="/signup">
-                <span className="underline text-primary">Register</span>
-              </Link>
+              Don't have an account? <Link href="/signup">Sign up</Link>
             </small>
           </div>
         </form>
