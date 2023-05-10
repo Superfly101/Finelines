@@ -4,7 +4,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      <main className="bg-tertiary">{children}</main>
+      <main>{children}</main>
     </>
   );
 };

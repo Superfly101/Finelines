@@ -1,17 +1,16 @@
+import { Button } from "@chakra-ui/react";
+
 type ButtonProp = {
   children: React.ReactNode;
-  icon: React.ReactNode;
+  icon: React.ReactElement;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const IconButton = ({ icon, children, onClick }: ButtonProp) => {
   return (
-    <button
-      onClick={onClick}
-      className="py-2 px-4 w-full rounded-md text-black flex flex-row-reverse justify-center gap-3 sm:bg-secondary sm:text-white sm:hover:bg-secondary-100"
-    >
-      <p className="hidden text-inherit sm:block">{children}</p> {icon}
-    </button>
+    <Button onClick={onClick} leftIcon={icon} variant="ghost">
+      {children}
+    </Button>
   );
 };
 
