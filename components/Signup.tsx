@@ -38,7 +38,7 @@ const Signup = () => {
           </Alert>
         )}
         <h2 className="my-4 text-center text-secondary font-bold text-xl">
-          Sign Up
+          Sign up
         </h2>
         <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit}>
           <FormControl>
@@ -95,14 +95,13 @@ const Signup = () => {
             />
           </FormControl>
 
-          <div className="mt-4 form-control">
-            <Button disabled={isLoading}>Sign up</Button>
+          <div className="flex flex-col gap-2 pt-4">
+            <Button disabled={isLoading} colorScheme="blue">
+              Sign up
+            </Button>
 
-            <small className="text-primary text-center font-[500]">
-              Have an existing account?{" "}
-              <Link href="/login">
-                <span className="underline">Login</span>
-              </Link>
+            <small className="text-center font-[500]">
+              Have an existing account? <Link href="/login">Login</Link>
             </small>
           </div>
         </form>

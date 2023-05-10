@@ -2,25 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  form input {
-    @apply px-3 py-2 bg-transparent w-full border text-sm text-secondary border-secondary rounded-lg outline-secondary;
-  }
-
-  form label {
-    @apply text-secondary font-[500] text-sm;
-  }
-
-  p,
-  a,
-  small {
-    @apply text-black;
-  }
-}
-
-@layer components {
-  .form-control {
-    @apply flex flex-col gap-2;
-  }
-}
