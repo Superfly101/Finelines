@@ -1,5 +1,5 @@
 import useAuthContext from "@/hooks/useAuthContext";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { Comment } from "@/models/Comment";
 
@@ -39,10 +39,9 @@ const AddComment = ({ id, addComment }: Prop) => {
     <div className="flex gap-2 items-center py-2">
       <Avatar />
       <form onSubmit={handleSubmit} className="w-full">
-        <input
-          type="text"
+        <Input
           placeholder="Add a comment..."
-          className="rounded-full"
+          borderRadius="full"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
