@@ -9,6 +9,7 @@ import {
   FormLabel,
   Input,
   Button,
+  Checkbox,
 } from "@chakra-ui/react";
 
 const Signup = () => {
@@ -16,10 +17,9 @@ const Signup = () => {
     username: "",
     email: "",
     password: "",
-    password2: "",
   });
 
-  const { username, email, password, password2 } = formData;
+  const { username, email, password } = formData;
   const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -57,6 +57,7 @@ const Signup = () => {
           <FormControl>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
+              type="email"
               placeholder="Your email address"
               id="email"
               onChange={(e) =>
@@ -71,6 +72,7 @@ const Signup = () => {
           <FormControl>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
+              type="password"
               placeholder="Password"
               id="password"
               onChange={(e) =>
@@ -81,20 +83,8 @@ const Signup = () => {
               }
             />
           </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="password2">Confirm Password</FormLabel>
-            <Input
-              placeholder="Password"
-              id="password2"
-              onChange={(e) =>
-                setFormData((prevState) => ({
-                  ...prevState,
-                  [e.target.id]: e.target.value,
-                }))
-              }
-            />
-          </FormControl>
 
+          <Checkbox> Show password</Checkbox>
           <div className="flex flex-col gap-2 pt-4">
             <Button disabled={isLoading} colorScheme="blue">
               Sign up
