@@ -1,6 +1,18 @@
 import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
-import { Button } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { BellIcon } from "@chakra-ui/icons";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import Link from "next/link";
 
 const Header = () => {
@@ -19,8 +31,26 @@ const Header = () => {
       </div>
       <nav className="flex gap-4 text-black items-center">
         {user && (
-          <div>
-            <Button onClick={handleLogout}>Logout</Button>
+          <div className="flex gap-4">
+            <div className="flex items-center">
+              <BellIcon fontSize="2xl" />
+            </div>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                variant="ghost"
+                paddingInline="1"
+              >
+                <Avatar name={user.username} size="sm" />
+              </MenuButton>
+              <MenuList>
+                <MenuGroup title={`Signed in as ${user.username}`}>
+                  <MenuDivider />
+                  <MenuItem onClick={handleLogout}>Sign out</MenuItem>
+                </MenuGroup>
+              </MenuList>
+            </Menu>
           </div>
         )}
         {!user && (
