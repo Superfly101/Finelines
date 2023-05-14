@@ -13,25 +13,52 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const router = useRouter();
   const handleLogout = () => {
     logout();
   };
 
+  let active = "text-blue underline underline-offset-4";
+
   return (
     <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between bg-white md:px-8">
       <div>
-        <h2 className="text-3xl text-secondary font-bold">
+        <h2 className="text-3xl text-blue font-bold">
           <Link href="/">Finelines</Link>
         </h2>
       </div>
-      <nav className="flex gap-8">
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/contact">Contact</Link>
+      <nav>
+        <ul className="flex gap-12 font-semibold">
+          <li>
+            <Link
+              href="/"
+              className={`${router.pathname === "/" ? active : null}`}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className={`${router.pathname === "/about" ? active : null}`}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className={`${router.pathname === "/contact" ? active : null}`}
+            >
+              Contact
+            </Link>
+          </li>
+        </ul>
       </nav>
       <nav className="flex gap-4 items-center">
         {user && (

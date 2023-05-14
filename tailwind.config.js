@@ -19,6 +19,9 @@ module.exports = {
         secondary: { DEFAULT: "#262666", 200: "#26266680", 100: "#26266666" },
         tertiary: "#f5f5dc",
       },
+      fontWeight: {
+        semibold: 500,
+      },
     },
   },
   plugins: [],
