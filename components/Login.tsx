@@ -1,3 +1,4 @@
+import useAuthContext from "@/hooks/useAuthContext";
 import useLogin from "@/hooks/useLogin";
 import {
   Alert,
@@ -7,6 +8,7 @@ import {
   FormLabel,
   Input,
   Button,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,6 +17,8 @@ import { useEffect, useRef, useState } from "react";
 const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
   const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
+  const { user } = useAuthContext();
   const router = useRouter();
 
   const { login, error, isLoading } = useLogin();
@@ -28,8 +32,18 @@ const Login = () => {
     userRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    if (!error && user) {
+      router.push("/");
+    }
+  }, [error, user]);
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (password === "") {
+      return setIsError(true);
+    }
 
     let email = "";
     let username = "";
@@ -41,8 +55,6 @@ const Login = () => {
     }
 
     await login(username, email, password);
-
-    router.push("/");
   };
 
   return (
@@ -58,19 +70,33 @@ const Login = () => {
           Login
         </h2>
         <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel>Username or Email</FormLabel>
             <Input ref={userRef} />
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={isError}>
             <FormLabel>Password</FormLabel>
 
-            <Input type="password" placeholder="Enter Password" />
+            <Input
+              isInvalid={isError}
+              type="password"
+              placeholder="Enter Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setIsError(false);
+              }}
+            />
+            <FormErrorMessage>Password is required</FormErrorMessage>
           </FormControl>
 
           <div className="flex flex-col py-2 gap-2">
-            <Button colorScheme="blue" disabled={isLoading}>
-              Login
+            <Button
+              colorScheme="blue"
+              isLoading={isLoading}
+              type="submit"
+              loadingText="Submitting..."
+            >
+              Log in
             </Button>
 
             <small className="text-center font-[500]">

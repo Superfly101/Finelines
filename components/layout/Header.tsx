@@ -10,8 +10,6 @@ const Header = () => {
     logout();
   };
 
-  const handleAddPickupline = () => {};
-
   return (
     <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between bg-white md:px-8">
       <div>
@@ -20,9 +18,6 @@ const Header = () => {
         </h2>
       </div>
       <nav className="flex gap-4 text-black items-center">
-        <Button onClick={handleAddPickupline} variant="outline">
-          Add lines
-        </Button>
         {user && (
           <div>
             <Button onClick={handleLogout}>Logout</Button>
