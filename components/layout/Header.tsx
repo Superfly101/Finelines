@@ -5,7 +5,6 @@ import { BellIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Button,
-  IconButton,
   Menu,
   MenuButton,
   MenuDivider,
@@ -29,10 +28,15 @@ const Header = () => {
           <Link href="/">Finelines</Link>
         </h2>
       </div>
-      <nav className="flex gap-4 text-black items-center">
+      <nav className="flex gap-8">
+        <Link href="/">Home</Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
+      </nav>
+      <nav className="flex gap-4 items-center">
         {user && (
           <div className="flex gap-4">
-            <div className="flex items-center">
+            <div className="flex items-center cursor-pointer">
               <BellIcon fontSize="2xl" />
             </div>
             <Menu>
@@ -46,6 +50,10 @@ const Header = () => {
               </MenuButton>
               <MenuList>
                 <MenuGroup title={`Signed in as ${user.username}`}>
+                  <MenuItem>Profile</MenuItem>
+                  <MenuItem>Bookmarks</MenuItem>
+                  <MenuDivider />
+                  <MenuItem>Help</MenuItem>
                   <MenuDivider />
                   <MenuItem onClick={handleLogout}>Sign out</MenuItem>
                 </MenuGroup>
