@@ -10,6 +10,7 @@ import {
   Input,
   Button,
   Checkbox,
+  Heading,
 } from "@chakra-ui/react";
 
 const Signup = () => {
@@ -37,9 +38,9 @@ const Signup = () => {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-        <h2 className="my-4 text-center text-secondary font-bold text-xl">
+        <Heading color="blue.500" size="md" className="mb-4 text-center">
           Sign up
-        </h2>
+        </Heading>
         <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit}>
           <FormControl>
             <FormLabel htmlFor="username">Username</FormLabel>

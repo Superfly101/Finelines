@@ -45,7 +45,7 @@ const Header = () => {
           </ul>
         </nav>
         <nav className="flex gap-4 items-center">
-          {user && <UserMenu />}
+          <UserMenu />
           {!user && (
             <div className="flex gap-4 items-center">
               <Link href="/signup">Sign up</Link>
