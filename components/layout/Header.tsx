@@ -1,26 +1,11 @@
 import useAuthContext from "@/hooks/useAuthContext";
-import useLogout from "@/hooks/useLogout";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import UserMenu from "./UserMenu";
+import { NAV_ITEMS } from "@/constants/NavItems";
 
 const Header = () => {
-  const NAV_ITEMS = [
-    {
-      path: "/",
-      name: "Home",
-    },
-    {
-      path: "/about",
-      name: "About",
-    },
-    {
-      path: "/contact",
-      name: "Contact",
-    },
-  ];
-  const { logout } = useLogout();
   const { user } = useAuthContext();
   const router = useRouter();
 
