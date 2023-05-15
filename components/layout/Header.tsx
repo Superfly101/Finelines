@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import UserMenu from "./UserMenu";
 import { NAV_ITEMS } from "@/constants/NavItems";
 import NavDrawer from "./NavDrawer";
-import { useDisclosure } from "@chakra-ui/react";
+import { Heading, useDisclosure } from "@chakra-ui/react";
 
 const Header = () => {
   const { user } = useAuthContext();
@@ -21,9 +21,9 @@ const Header = () => {
           <HamburgerIcon />
         </div>
         <div>
-          <h2 className="text-3xl text-blue font-bold">
+          <Heading color="blue.600">
             <Link href="/">Finelines</Link>
-          </h2>
+          </Heading>
         </div>
         <nav className="hidden md:block">
           <ul className="flex gap-12 font-semibold">
