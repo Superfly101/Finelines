@@ -7,13 +7,16 @@ import {
   MenuDivider,
   Button,
   Avatar,
+  useColorMode,
+  IconButton,
 } from "@chakra-ui/react";
-import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { BellIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
 const UserMenu = () => {
   const { user } = useAuthContext();
   const { logout } = useLogout();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const handleLogout = () => {
     logout();
@@ -21,6 +24,13 @@ const UserMenu = () => {
 
   return (
     <div className="flex gap-4">
+      <div>
+        <IconButton
+          onClick={toggleColorMode}
+          aria-label="toggle color mode"
+          icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+        />
+      </div>
       <div className="flex items-center cursor-pointer">
         <BellIcon fontSize="2xl" />
       </div>
