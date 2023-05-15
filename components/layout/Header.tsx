@@ -1,29 +1,30 @@
 import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import { BellIcon, HamburgerIcon } from "@chakra-ui/icons";
-import {
-  Avatar,
-  Button,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuGroup,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import UserMenu from "./UserMenu";
 
 const Header = () => {
+  const NAV_ITEMS = [
+    {
+      path: "/",
+      name: "Home",
+    },
+    {
+      path: "/about",
+      name: "About",
+    },
+    {
+      path: "/contact",
+      name: "Contact",
+    },
+  ];
   const { logout } = useLogout();
   const { user } = useAuthContext();
   const router = useRouter();
-  const handleLogout = () => {
-    logout();
-  };
 
-  let active = "text-blue underline underline-offset-4";
+  const active = "text-blue underline underline-offset-4";
 
   return (
     <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between bg-white md:px-8">
@@ -37,60 +38,20 @@ const Header = () => {
       </div>
       <nav className="hidden md:block">
         <ul className="flex gap-12 font-semibold">
-          <li>
-            <Link
-              href="/"
-              className={`${router.pathname === "/" ? active : null}`}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/about"
-              className={`${router.pathname === "/about" ? active : null}`}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contact"
-              className={`${router.pathname === "/contact" ? active : null}`}
-            >
-              Contact
-            </Link>
-          </li>
+          {NAV_ITEMS.map((item, index) => (
+            <li key={index}>
+              <Link
+                href={item.path}
+                className={`${router.pathname === item.path ? active : null}`}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
       <nav className="flex gap-4 items-center">
-        {user && (
-          <div className="flex gap-4">
-            <div className="flex items-center cursor-pointer">
-              <BellIcon fontSize="2xl" />
-            </div>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rightIcon={<ChevronDownIcon />}
-                variant="ghost"
-                paddingInline="1"
-              >
-                <Avatar name={user.username} size="sm" />
-              </MenuButton>
-              <MenuList>
-                <MenuGroup title={`Signed in as ${user.username}`}>
-                  <MenuItem>Profile</MenuItem>
-                  <MenuItem>Bookmarks</MenuItem>
-                  <MenuDivider />
-                  <MenuItem>Help</MenuItem>
-                  <MenuDivider />
-                  <MenuItem onClick={handleLogout}>Sign out</MenuItem>
-                </MenuGroup>
-              </MenuList>
-            </Menu>
-          </div>
-        )}
+        {user && <UserMenu />}
         {!user && (
           <div className="flex gap-4 items-center">
             <Link href="/signup">Sign up</Link>
