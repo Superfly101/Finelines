@@ -1,7 +1,7 @@
 import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { BellIcon } from "@chakra-ui/icons";
+import { BellIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Button,
@@ -27,12 +27,15 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between bg-white md:px-8">
+      <div className="cursor-pointer text-2xl md:hidden">
+        <HamburgerIcon />
+      </div>
       <div>
         <h2 className="text-3xl text-blue font-bold">
           <Link href="/">Finelines</Link>
         </h2>
       </div>
-      <nav>
+      <nav className="hidden md:block">
         <ul className="flex gap-12 font-semibold">
           <li>
             <Link
