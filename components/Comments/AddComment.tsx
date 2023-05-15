@@ -43,7 +43,7 @@ const AddComment = ({ id, addComment }: Prop) => {
 
   return (
     <div className="flex gap-2 items-center py-2">
-      <Avatar />
+      <Avatar size={["sm", "md"]} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           placeholder="Add a comment..."
