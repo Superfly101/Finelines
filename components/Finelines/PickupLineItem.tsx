@@ -1,7 +1,7 @@
 import useAuthContext from "@/hooks/useAuthContext";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import CommentSection from "../Comments/CommentSection";
 import BookmarkIcon from "../icons/BookmarkIcon";
@@ -38,26 +38,26 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
   const handleShare = () => {};
   const handleBookmark = () => {};
   return (
-    <li className="text-black f'lex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
+    <li className="flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
       <div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <Avatar />
-          <p className="flex gap-2 items-center font-[500]">{user}</p>
+          <Text className="font-semibold">{user}</Text>
         </div>
-        <p className="py-2">{text}</p>
+        <Text className="py-2">{text}</Text>
         {tags && <small>Tags: {tags}</small>}
         <div className="flex justify-between text-sm py-1">
-          <p>
+          <Text>
             {likes.length > 1
               ? `Liked by ${likes.length} people`
               : likes.length === 1
               ? `Liked by 1 person`
               : "Be the first to like"}
-          </p>
+          </Text>
           {comments.length !== 0 && (
-            <p>
+            <Text>
               {comments.length} {comments.length === 1 ? "comment" : "comments"}
-            </p>
+            </Text>
           )}
         </div>
       </div>

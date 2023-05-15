@@ -16,12 +16,12 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between bg-white md:px-8">
+      <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8">
         <div className="cursor-pointer text-2xl md:hidden" onClick={onOpen}>
           <HamburgerIcon />
         </div>
         <div>
-          <Heading color="blue.600">
+          <Heading color="blue.400">
             <Link href="/">Finelines</Link>
           </Heading>
         </div>

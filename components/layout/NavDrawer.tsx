@@ -28,7 +28,7 @@ const NavDrawer = ({ isOpen, onClose }: Prop) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader className="flex items-center justify-between">
-            <Heading color="blue.600">
+            <Heading color="blue.400">
               <Link href="/">Finelines</Link>
             </Heading>
             <IconButton
