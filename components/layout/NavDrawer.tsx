@@ -3,21 +3,26 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
-  useDisclosure,
 } from "@chakra-ui/react";
-const { isOpen, onOpen, onClose } = useDisclosure();
-const NavDrawer = () => {
+
+type Prop = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+const NavDrawer = ({ isOpen, onClose }: Prop) => {
   return (
-    <Drawer isOpen={isOpen} onClose={onClose}>
-      <DrawerOverlay />
-      <DrawerContent>
-        <DrawerBody>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </DrawerBody>
-      </DrawerContent>
-    </Drawer>
+    <>
+      <Drawer placement="top" isOpen={isOpen} onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerBody>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 };
 
