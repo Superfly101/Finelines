@@ -1,7 +1,7 @@
 import useAuthContext from "@/hooks/useAuthContext";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
-import { Avatar, Text } from "@chakra-ui/react";
+import { Avatar, Text, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import CommentSection from "../Comments/CommentSection";
 import BookmarkIcon from "../icons/BookmarkIcon";
@@ -16,8 +16,18 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
   const [showComments, setShowComments] = useState(false);
   const { user: currentUser } = useAuthContext();
   const { dispatch } = useFinelinesContext();
+  const toast = useToast();
 
   const handleLike = async () => {
+    if (!currentUser) {
+      toast({
+        title: "Please sign in to perform this action",
+        status: "error",
+        isClosable: true,
+        position: "bottom-left",
+      });
+      return;
+    }
     const response = await fetch(
       `http://localhost:5000/api/pickup-lines/${_id}/like`,
       {
@@ -38,11 +48,15 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
   const handleShare = () => {};
   const handleBookmark = () => {};
   return (
-    <li className="flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-secondary rounded-lg drop-shadow-xl">
+    <li className="flex flex-col gap-4 w-full max-w-[40rem] mx-auto p-4 border border-blue rounded-lg drop-shadow-xl">
       <div>
-        <div className="flex gap-2 items-center">
+        <div className="relative flex gap-2 items-center">
           <Avatar />
           <Text className="font-semibold">{user}</Text>
+
+          <div className="absolute right-0 top-0">
+            <BookmarkIcon />
+          </div>
         </div>
         <Text className="py-2">{text}</Text>
         {tags && <small>Tags: {tags}</small>}
@@ -73,9 +87,6 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
         </IconButton>
         <IconButton onClick={handleShare} icon={<ShareIcon />}>
           Share
-        </IconButton>
-        <IconButton onClick={handleBookmark} icon={<BookmarkIcon />}>
-          Bookmark
         </IconButton>
       </div>
 

@@ -1,5 +1,5 @@
 import useAuthContext from "@/hooks/useAuthContext";
-import { Avatar, Input } from "@chakra-ui/react";
+import { Avatar, Input, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { Comment } from "@/models/Comment";
 
@@ -11,10 +11,22 @@ const AddComment = ({ id, addComment }: Prop) => {
   const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState("");
 
+  const toast = useToast();
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     setIsLoading(true);
+
+    if (!user) {
+      toast({
+        title: "Please sign in to perform this action",
+        status: "error",
+        isClosable: true,
+        position: "bottom-left",
+      });
+      return;
+    }
 
     const response = await fetch(
       `http://localhost:5000/api/pickup-lines/${id}/comments`,
