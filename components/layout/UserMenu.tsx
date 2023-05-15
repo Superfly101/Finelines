@@ -24,7 +24,7 @@ const UserMenu = () => {
 
   return (
     <div className="flex gap-4">
-      <div>
+      <div className="hidden md:block">
         <IconButton
           onClick={toggleColorMode}
           aria-label="toggle color mode"

@@ -5,18 +5,23 @@ import { useRouter } from "next/router";
 import UserMenu from "./UserMenu";
 import { NAV_ITEMS } from "@/constants/NavItems";
 import NavDrawer from "./NavDrawer";
-import { Heading, useDisclosure } from "@chakra-ui/react";
+import { Heading, useColorMode, useDisclosure } from "@chakra-ui/react";
 
 const Header = () => {
   const { user } = useAuthContext();
   const router = useRouter();
   const { onOpen, isOpen, onClose } = useDisclosure();
+  const { colorMode } = useColorMode();
 
   const active = "text-blue underline underline-offset-4";
 
   return (
     <>
-      <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8">
+      <header
+        className={`sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8 ${
+          colorMode === "light" ? "bg-white" : "bg-[#1A202C]"
+        }`}
+      >
         <div className="cursor-pointer text-2xl md:hidden" onClick={onOpen}>
           <HamburgerIcon />
         </div>

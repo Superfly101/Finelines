@@ -3,12 +3,15 @@ import {
   Drawer,
   DrawerBody,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   Heading,
   IconButton,
+  Text,
+  useColorMode,
 } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -19,6 +22,8 @@ type Prop = {
 
 const NavDrawer = ({ isOpen, onClose }: Prop) => {
   const router = useRouter();
+
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const active = "text-blue underline underline-offset-4";
 
@@ -57,6 +62,16 @@ const NavDrawer = ({ isOpen, onClose }: Prop) => {
               </ul>
             </nav>
           </DrawerBody>
+          <DrawerFooter>
+            <div className="flex gap-2 items-center">
+              <Text>Toggle color mode: </Text>
+              <IconButton
+                onClick={toggleColorMode}
+                aria-label="toggle color mode"
+                icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              />
+            </div>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
