@@ -11,6 +11,7 @@ export const authInitialState = {
   user: null,
 };
 
+// console.log(initState.user);
 export const authReducer = (
   state: authInitialStateType,
   action: AuthActionType
