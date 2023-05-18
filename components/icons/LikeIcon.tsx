@@ -1,6 +1,5 @@
 const LikeIcon = ({ isLiked }: { isLiked: boolean }) => {
   const liked = "fill-blue";
-  console.log(isLiked);
   return (
     <div>
       <svg

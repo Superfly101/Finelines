@@ -3,6 +3,7 @@ import { Avatar, Input, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { Comment } from "@/models/Comment";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
+import { PickupLine } from "@/models/pickupLine";
 
 type Prop = { id: string; addComment: (comment: Comment) => void };
 
@@ -11,6 +12,7 @@ const AddComment = ({ id, addComment }: Prop) => {
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState("");
+  const { dispatch, finelines } = useFinelinesContext();
 
   const toast = useToast();
 
@@ -51,10 +53,13 @@ const AddComment = ({ id, addComment }: Prop) => {
 
     setComment("");
     addComment(result);
-    // console.log(id);
-    // console.log(finelines);
-    // console.log(finelines.find((fineline) => fineline._id === id));
-    // dispatch({ type: "COMMENT_FINELNE", payload: result });
+    const newLine: PickupLine | undefined = finelines.find(
+      (fineline) => fineline._id === id
+    );
+    if (newLine) {
+      newLine.comments.push(result._id);
+      dispatch({ type: "COMMENT_FINELNE", payload: newLine });
+    }
     setIsLoading(false);
   };
 
