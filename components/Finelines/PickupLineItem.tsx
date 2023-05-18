@@ -83,7 +83,11 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
         </div>
       </div>
       <div className="flex justify-between">
-        <IconButton onClick={handleLike} icon={<LikeIcon isLiked={isLiked} />}>
+        <IconButton
+          onClick={handleLike}
+          active={isLiked}
+          icon={<LikeIcon isLiked={isLiked} />}
+        >
           Like
         </IconButton>
         <IconButton
