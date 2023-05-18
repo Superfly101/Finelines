@@ -1,6 +1,11 @@
-const LikeIcon = () => {
+const LikeIcon = ({ isLiked }: { isLiked: boolean }) => {
+  const liked = "fill-blue";
   return (
-    <div className="fill-transparent stroke-current hover:stroke-blue hover:fill-blue">
+    <div
+      className={`fill-transparent stroke-current hover:fill-blue ${
+        isLiked ? liked : null
+      }`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="w-6 stroke-[2rem]"
