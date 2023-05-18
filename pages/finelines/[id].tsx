@@ -1,15 +1,13 @@
 import PickupLineItem from "@/components/Finelines/PickupLineItem";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
-import fetcher from "@/libs/fetch";
 import { PickupLine } from "@/models/pickupLine";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
-import useSWR from "swr";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.params?.id;
+  // const id = context.params?.id;
   // const res = await fetch(`http://localhost:5000/api/pickup-lines/${id}`);
   // const pickupline = await res.json();
   // if (!res.ok) {
@@ -27,10 +25,9 @@ type PickupLineProps = {
   pickupline: PickupLine;
 };
 
-const Fineline = () => {
+const Fineline = ({ pickupline }: PickupLineProps) => {
   const { dispatch, finelines } = useFinelinesContext();
   const [error, setError] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [pickupLine, setPickupLine] = useState<PickupLine>();
 
   const router = useRouter();
@@ -48,6 +45,9 @@ const Fineline = () => {
       if (response.ok) {
         dispatch({ type: "GET_FINELINES", payload: [data] });
         setPickupLine(data);
+      } else {
+        setError(data);
+        console.log(error);
       }
     };
 
