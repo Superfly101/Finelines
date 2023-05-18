@@ -1,4 +1,5 @@
 import { Comment } from "@/models/Comment";
+import { Divider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import AddComment from "./AddComment";
@@ -39,7 +40,10 @@ const CommentList = ({ id }: { id: string }) => {
       {!isLoading && (
         <ul>
           {comments.map((comment, index) => (
-            <CommentItem key={index} {...comment} />
+            <>
+              <CommentItem key={index} {...comment} />
+              <Divider />
+            </>
           ))}
         </ul>
       )}
