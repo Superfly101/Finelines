@@ -17,11 +17,7 @@ const Header = () => {
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8 ${
-          colorMode === "light" ? "bg-white" : "bg-[#1A202C]"
-        }`}
-      >
+      <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8 backdrop-blur-lg">
         <div className="cursor-pointer text-2xl md:hidden" onClick={onOpen}>
           <HamburgerIcon />
         </div>
