@@ -32,7 +32,7 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
       `http://localhost:5000/api/pickup-lines/${_id}/like`,
       {
         method: "PATCH",
-        headers: { Authorization: `Bearer ${currentUser?.token}` },
+        credentials: "include",
       }
     );
 
