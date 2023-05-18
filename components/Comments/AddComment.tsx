@@ -2,6 +2,7 @@ import useAuthContext from "@/hooks/useAuthContext";
 import { Avatar, Input, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { Comment } from "@/models/Comment";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
 
 type Prop = { id: string; addComment: (comment: Comment) => void };
 
@@ -50,6 +51,10 @@ const AddComment = ({ id, addComment }: Prop) => {
 
     setComment("");
     addComment(result);
+    // console.log(id);
+    // console.log(finelines);
+    // console.log(finelines.find((fineline) => fineline._id === id));
+    // dispatch({ type: "COMMENT_FINELNE", payload: result });
     setIsLoading(false);
   };
 

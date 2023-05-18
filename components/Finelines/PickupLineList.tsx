@@ -1,5 +1,5 @@
 import useFinelinesContext from "@/hooks/useFinelinesContext";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import PickupLineItem from "./PickupLineItem";
 
 const PickupLinesList = () => {

@@ -2,6 +2,7 @@ import useAuthContext from "@/hooks/useAuthContext";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
 import { Avatar, Text, useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import CommentSection from "../Comments/CommentSection";
 import BookmarkIcon from "../icons/BookmarkIcon";
@@ -10,19 +11,31 @@ import LikeIcon from "../icons/LikeIcon";
 import ShareIcon from "../icons/ShareIcon";
 import IconButton from "../ui/IconButton";
 
-type prop = PickupLine;
+interface Prop extends PickupLine {
+  showCommentSection?: boolean;
+}
 
-const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
-  const [showComments, setShowComments] = useState(false);
+const PickupLineItem = ({
+  _id,
+  user,
+  text,
+  tags,
+  likes,
+  comments,
+  showCommentSection,
+}: Prop) => {
+  const [showComments, setShowComments] = useState(showCommentSection);
   const { user: currentUser } = useAuthContext();
   const { dispatch } = useFinelinesContext();
   const toast = useToast();
-
+  const router = useRouter();
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    if (currentUser) setIsLiked(likes.includes(currentUser._id));
-  }, []);
+    if (currentUser) {
+      setIsLiked(likes.includes(currentUser._id));
+    }
+  }, [currentUser]);
 
   const handleLike = async () => {
     if (!currentUser) {
@@ -54,8 +67,11 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
     dispatch({ type: "LIKE_FINELINE", payload: result });
   };
   const handleShare = () => {};
+
   return (
-    <li className="flex flex-col w-full max-w-[40rem] mx-auto p-4 border rounded-lg drop-shadow-xl">
+    <li
+      className={`flex flex-col w-full max-w-[40rem] mx-auto p-4 border rounded-lg drop-shadow-xl`}
+    >
       <div>
         <div className="relative flex gap-2 items-center">
           <Avatar />

@@ -1,5 +1,5 @@
+import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { Comment } from "@/models/Comment";
-import { Divider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import AddComment from "./AddComment";
@@ -12,6 +12,7 @@ const CommentList = ({ id }: { id: string }) => {
   const handleAddComment = (comment: Comment) => {
     setComments((prev) => [comment, ...prev]);
   };
+
   useEffect(() => {
     const fetchComments = async () => {
       setIsLoading(true);
@@ -39,11 +40,8 @@ const CommentList = ({ id }: { id: string }) => {
       {isLoading && <LoadingSpinner />}
       {!isLoading && (
         <ul>
-          {comments.map((comment, index) => (
-            <>
-              <CommentItem key={index} {...comment} />
-              <Divider />
-            </>
+          {comments.map((comment) => (
+            <CommentItem key={comment._id} {...comment} />
           ))}
         </ul>
       )}
