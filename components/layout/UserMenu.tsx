@@ -13,6 +13,7 @@ import {
 import { BellIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import useAuthContext from "@/hooks/useAuthContext";
 import useLogout from "@/hooks/useLogout";
+import Link from "next/link";
 const UserMenu = () => {
   const { user } = useAuthContext();
   const { logout } = useLogout();
@@ -48,8 +49,16 @@ const UserMenu = () => {
             </MenuButton>
             <MenuList>
               <MenuGroup title={`Signed in as ${user.username}`}>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Bookmarks</MenuItem>
+                <MenuItem>
+                  <Link className="w-full flex" href="/profile">
+                    Profile
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link className="w-full flex" href="/bookmarks">
+                    Bookmarks
+                  </Link>
+                </MenuItem>
                 <MenuDivider />
                 <MenuItem>Help</MenuItem>
                 <MenuDivider />
