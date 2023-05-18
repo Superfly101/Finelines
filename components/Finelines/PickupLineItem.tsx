@@ -55,7 +55,7 @@ const PickupLineItem = ({ _id, user, text, tags, likes, comments }: prop) => {
   };
   const handleShare = () => {};
   return (
-    <li className="flex flex-col w-full max-w-[40rem] mx-auto p-4 border border-blue rounded-lg drop-shadow-xl">
+    <li className="flex flex-col w-full max-w-[40rem] mx-auto p-4 border rounded-lg drop-shadow-xl">
       <div>
         <div className="relative flex gap-2 items-center">
           <Avatar />
