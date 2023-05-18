@@ -28,7 +28,6 @@ const PickupLineItem = ({
   const { user: currentUser } = useAuthContext();
   const { dispatch } = useFinelinesContext();
   const toast = useToast();
-  const router = useRouter();
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {

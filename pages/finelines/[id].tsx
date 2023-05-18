@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import useSWR from "swr";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
@@ -27,24 +28,38 @@ type PickupLineProps = {
 };
 
 const Fineline = () => {
+  const { dispatch, finelines } = useFinelinesContext();
+  const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
-  // const [data, setData] = useState<PickupLine>();
+  const [pickupLine, setPickupLine] = useState<PickupLine>();
+
   const router = useRouter();
 
   const id = router.query.id;
 
-  const { data, error } = useSWR<PickupLine>(
-    `http://localhost:5000/api/pickup-lines/${id}`,
-    fetcher
-  );
+  useEffect(() => {
+    const getPickupLine = async () => {
+      const response = await fetch(
+        `http://localhost:5000/api/pickup-lines/${id}`
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "GET_FINELINES", payload: [data] });
+        setPickupLine(data);
+      }
+    };
+
+    getPickupLine();
+  }, []);
 
   if (error) return <div>Failed to load</div>;
 
   return (
     <section>
-      {data ? (
-        <PickupLineItem {...data} showCommentSection={true} />
+      {pickupLine ? (
+        <PickupLineItem {...finelines[0]} showCommentSection={true} />
       ) : (
         <LoadingSpinner />
       )}
