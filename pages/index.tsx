@@ -5,20 +5,16 @@ import { IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import AddFineline from "@/components/Finelines/AddFineline";
 import useAuthContext from "@/hooks/useAuthContext";
+import useCustomToast from "@/hooks/useCustomToast";
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
   const { user } = useAuthContext();
+  const { addToast } = useCustomToast();
 
   const handleClick = () => {
     if (!user) {
-      toast({
-        title: "Please sign in to add to your pickup line",
-        status: "error",
-        isClosable: true,
-        position: "bottom-left",
-      });
+      addToast({ title: "Please sign in to add to your pickup line" });
       return;
     }
 
