@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Comment } from "@/models/Comment";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
+import useCustomToast from "@/hooks/useCustomToast";
 
 type Prop = { id: string; addComment: (comment: Comment) => void };
 
@@ -11,10 +12,8 @@ const AddComment = ({ id, addComment }: Prop) => {
   const { user } = useAuthContext();
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState("");
   const { dispatch, finelines } = useFinelinesContext();
-
-  const toast = useToast();
+  const { addToast } = useCustomToast();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,12 +21,7 @@ const AddComment = ({ id, addComment }: Prop) => {
     setIsLoading(true);
 
     if (!user) {
-      toast({
-        title: "Please sign in to perform this action",
-        status: "error",
-        isClosable: true,
-        position: "bottom-left",
-      });
+      addToast();
       return;
     }
 

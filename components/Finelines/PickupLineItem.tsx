@@ -1,4 +1,5 @@
 import useAuthContext from "@/hooks/useAuthContext";
+import useCustomToast from "@/hooks/useCustomToast";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
 import { Avatar, Text, useToast } from "@chakra-ui/react";
@@ -27,23 +28,20 @@ const PickupLineItem = ({
   const [showComments, setShowComments] = useState(showCommentSection);
   const { user: currentUser } = useAuthContext();
   const { dispatch } = useFinelinesContext();
-  const toast = useToast();
   const [isLiked, setIsLiked] = useState(false);
+  const { addToast } = useCustomToast();
 
   useEffect(() => {
     if (currentUser) {
       setIsLiked(likes.includes(currentUser._id));
+    } else {
+      setIsLiked(false);
     }
   }, [currentUser]);
 
   const handleLike = async () => {
     if (!currentUser) {
-      toast({
-        title: "Please sign in to perform this action",
-        status: "error",
-        isClosable: true,
-        position: "bottom-left",
-      });
+      addToast();
       return;
     }
     setIsLiked((prev) => !prev);
