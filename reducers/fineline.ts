@@ -22,7 +22,7 @@ const FinelinesReducer = (
     case "GET_FINELINES":
       return { finelines: action.payload };
     case "ADD_FINELINE":
-      return { finelines: [...state.finelines, action.payload] };
+      return { finelines: [action.payload, ...state.finelines] };
     case "DELETE_FINELINE":
       return {
         finelines: state.finelines.filter(
