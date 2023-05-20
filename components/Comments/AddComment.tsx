@@ -21,7 +21,7 @@ const AddComment = ({ id, addComment }: Prop) => {
     setIsLoading(true);
 
     if (!user) {
-      addToast();
+      addToast({ status: "error" });
       return;
     }
 

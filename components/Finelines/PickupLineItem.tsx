@@ -41,7 +41,7 @@ const PickupLineItem = ({
 
   const handleLike = async () => {
     if (!currentUser) {
-      addToast();
+      addToast({ status: "error" });
       return;
     }
     setIsLiked((prev) => !prev);
