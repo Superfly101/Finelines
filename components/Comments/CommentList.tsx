@@ -1,4 +1,3 @@
-import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { Comment } from "@/models/Comment";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../ui/LoadingSpinner";
@@ -8,7 +7,6 @@ import CommentItem from "./Comment";
 const CommentList = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState("");
   const handleAddComment = (comment: Comment) => {
     setComments((prev) => [comment, ...prev]);
   };
@@ -24,7 +22,7 @@ const CommentList = ({ id }: { id: string }) => {
 
       if (!response.ok) {
         setIsLoading(false);
-        // setError(result);
+        console.log(result.message);
         return;
       }
 
