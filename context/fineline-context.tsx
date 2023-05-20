@@ -1,5 +1,8 @@
-import { PickupLine, FinelineActionType } from "@/models/pickupLine";
-import FinelinesReducer, { initialState } from "@/reducers/fineline";
+import { PickupLine } from "@/models/pickupLine";
+import FinelinesReducer, {
+  FinelineActionType,
+  initialState,
+} from "@/reducers/fineline";
 import React, { Dispatch, useReducer } from "react";
 
 type CtxProp = {
