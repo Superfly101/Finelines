@@ -1,4 +1,4 @@
-import { FinelineActionType, PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/models/pickupLine";
 
 type initialStateType = {
   finelines: PickupLine[];
@@ -6,6 +6,13 @@ type initialStateType = {
 export const initialState: initialStateType = {
   finelines: [],
 };
+
+export type FinelineActionType =
+  | { type: "GET_FINELINES"; payload: PickupLine[] }
+  | { type: "ADD_FINELINE"; payload: PickupLine }
+  | { type: "DELETE_FINELINE"; payload: string }
+  | { type: "LIKE_FINELINE"; payload: PickupLine }
+  | { type: "COMMENT_FINELNE"; payload: PickupLine };
 
 const FinelinesReducer = (
   state: initialStateType,
