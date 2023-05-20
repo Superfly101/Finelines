@@ -79,7 +79,16 @@ const PickupLineItem = ({
           </div>
         </div>
         <Text className="py-2">{text}</Text>
-        {tags && <small>Tags: {tags}</small>}
+        {tags && (
+          <small className="flex gap-1">
+            Tags:
+            <div className="flex gap-2">
+              {tags.map((tag, index) => (
+                <p key={index}>{tag}</p>
+              ))}
+            </div>
+          </small>
+        )}
         <div className="flex justify-between text-sm pt-1">
           <Text>
             {likes.length > 1
