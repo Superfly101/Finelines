@@ -6,12 +6,19 @@ const PickupLinesList = () => {
   const { finelines, dispatch } = useFinelinesContext();
   useEffect(() => {
     const fetchFinelines = async () => {
-      const response = await fetch("http://localhost:5000/api/pickup-lines");
+      try {
+        const response = await fetch("http://localhost:5000/api/pickup-lines");
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
+        if (!response.ok) {
+          console.log(data);
+          return;
+        }
+
         dispatch({ type: "GET_FINELINES", payload: data });
+      } catch (err) {
+        console.log(err);
       }
     };
 

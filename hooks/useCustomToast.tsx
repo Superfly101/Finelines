@@ -14,23 +14,29 @@ const useCustomToast = () => {
     const status = res?.status || "info";
     const position = res?.position || "bottom-left";
 
-    toast({
-      title,
-      status,
-      isClosable: true,
-      position,
-      containerStyle: {
-        marginTop: "4.5rem",
-      },
-      render: () =>
-        res?.href ? (
-          <Link href={res.href}>
-            <Alert status={status} variant="solid">
-              <AlertTitle>{title}</AlertTitle>
-            </Alert>
-          </Link>
-        ) : null,
-    });
+    res?.href
+      ? toast({
+          title,
+          status,
+          isClosable: true,
+          position,
+          containerStyle: {
+            marginTop: "4.5rem",
+          },
+          render: () => (
+            <Link href={res.href!}>
+              <Alert status={status} variant="solid">
+                <AlertTitle>{title}</AlertTitle>
+              </Alert>
+            </Link>
+          ),
+        })
+      : toast({
+          title,
+          status,
+          isClosable: true,
+          position,
+        });
   };
 
   return { addToast };

@@ -14,7 +14,11 @@ export default function Home() {
 
   const handleClick = () => {
     if (!user) {
-      addToast({ title: "Please sign in to add to your pickup line" });
+      console.log("Showing toast");
+      addToast({
+        title: "Please sign in to add to your pickup line",
+        status: "error",
+      });
       return;
     }
 
@@ -26,7 +30,7 @@ export default function Home() {
       <Head>
         <title>Finelines</title>
       </Head>
-      <HeroSection />
+      <HeroSection onAddFineline={handleClick} />
       <PickupLineList />
       <IconButton
         onClick={handleClick}
