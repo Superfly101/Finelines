@@ -2,13 +2,25 @@ import useAuthContext from "@/hooks/useAuthContext";
 import useCustomToast from "@/hooks/useCustomToast";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
-import { Avatar, Text, useToast } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import {
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Portal,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import CommentSection from "../Comments/CommentSection";
 import BookmarkIcon from "../icons/BookmarkIcon";
 import CommentIcon from "../icons/CommentIcon";
 import LikeIcon from "../icons/LikeIcon";
+import MenuIcon from "../icons/MenuIcon";
 import ShareIcon from "../icons/ShareIcon";
 import IconButton from "../ui/IconButton";
 
@@ -75,7 +87,21 @@ const PickupLineItem = ({
           <Text className="font-semibold">{user}</Text>
 
           <div className="absolute right-0 top-0">
-            <BookmarkIcon />
+            <Menu>
+              <MenuButton>
+                <MenuIcon />
+              </MenuButton>
+              <Portal>
+                <MenuList>
+                  <MenuItem icon={<DeleteIcon />} color="red">
+                    Delete Fineline
+                  </MenuItem>
+                  <MenuItem icon={<BookmarkIcon className="w-4" />}>
+                    Add to bookmark
+                  </MenuItem>
+                </MenuList>
+              </Portal>
+            </Menu>
           </div>
         </div>
         <Text className="py-2">{text}</Text>
