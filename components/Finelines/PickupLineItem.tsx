@@ -76,7 +76,7 @@ const PickupLineItem = ({
           <Avatar />
           <Text className="font-semibold">{user}</Text>
 
-          <FinelineMenu />
+          <FinelineMenu id={_id} />
         </div>
         <Text className="py-2">{text}</Text>
         {tags && (
