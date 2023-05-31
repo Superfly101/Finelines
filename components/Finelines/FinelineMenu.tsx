@@ -1,3 +1,4 @@
+import useAuthContext from "@/hooks/useAuthContext";
 import useCustomToast from "@/hooks/useCustomToast";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { DeleteIcon } from "@chakra-ui/icons";
@@ -20,12 +21,15 @@ import { useRef, useState } from "react";
 import BookmarkIcon from "../icons/BookmarkIcon";
 import MenuIcon from "../icons/MenuIcon";
 
-const FinelineMenu = ({ id }: { id: string }) => {
+type Prop = { id: string; username: string };
+
+const FinelineMenu = ({ id, username }: Prop) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
   const { dispatch } = useFinelinesContext();
   const [isLoading, setIsLoading] = useState(false);
   const { addToast } = useCustomToast();
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -60,9 +64,11 @@ const FinelineMenu = ({ id }: { id: string }) => {
         </MenuButton>
         <Portal>
           <MenuList>
-            <MenuItem icon={<DeleteIcon />} color="red" onClick={onOpen}>
-              Delete Fineline
-            </MenuItem>
+            {user?.username === username && (
+              <MenuItem icon={<DeleteIcon />} color="red" onClick={onOpen}>
+                Delete Fineline
+              </MenuItem>
+            )}
             <MenuItem icon={<BookmarkIcon className="w-3" />}>
               Add to bookmark
             </MenuItem>

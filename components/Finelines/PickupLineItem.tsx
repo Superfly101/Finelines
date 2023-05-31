@@ -3,13 +3,10 @@ import useCustomToast from "@/hooks/useCustomToast";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
 import { Avatar, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import CommentSection from "../Comments/CommentSection";
-import BookmarkIcon from "../icons/BookmarkIcon";
 import CommentIcon from "../icons/CommentIcon";
 import LikeIcon from "../icons/LikeIcon";
-import MenuIcon from "../icons/MenuIcon";
 import ShareIcon from "../icons/ShareIcon";
 import IconButton from "../ui/IconButton";
 import FinelineMenu from "./FinelineMenu";
@@ -76,7 +73,7 @@ const PickupLineItem = ({
           <Avatar />
           <Text className="font-semibold">{user}</Text>
 
-          <FinelineMenu id={_id} />
+          <FinelineMenu id={_id} username={user} />
         </div>
         <Text className="py-2">{text}</Text>
         {tags && (
