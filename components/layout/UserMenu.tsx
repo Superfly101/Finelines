@@ -49,15 +49,14 @@ const UserMenu = () => {
             </MenuButton>
             <MenuList>
               <MenuGroup title={`Signed in as ${user.username}`}>
-                <MenuItem>
-                  <Link className="w-full flex" href="/profile">
-                    Profile
-                  </Link>
+                <MenuItem as={Link} href="/profile">
+                  Profile
                 </MenuItem>
-                <MenuItem>
-                  <Link className="w-full flex" href="/bookmarks">
-                    Bookmarks
-                  </Link>
+                <MenuItem as={Link} href="/bookmark">
+                  Bookmarks
+                </MenuItem>
+                <MenuItem as={Link} href="/submissions">
+                  Pending submissions
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>Help</MenuItem>
