@@ -55,8 +55,8 @@ const UserMenu = () => {
                 <MenuItem as={Link} href="/bookmark">
                   Bookmarks
                 </MenuItem>
-                <MenuItem as={Link} href="/submissions">
-                  Pending submissions
+                <MenuItem as={Link} href="/pending">
+                  Pending approvals
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>Help</MenuItem>
