@@ -1,3 +1,5 @@
+"use client";
+
 import useSignup from "@/app/hooks/useSignup";
 import Link from "next/link";
 import { useState } from "react";

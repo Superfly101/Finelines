@@ -1,6 +1,13 @@
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "./Header";
+import { apiUrl } from "@/app/constants";
+import { User } from "@/app/models/User";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />

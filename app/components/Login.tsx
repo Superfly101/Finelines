@@ -1,3 +1,5 @@
+"use client";
+
 import useAuthContext from "@/app/hooks/useAuthContext";
 import useLogin from "@/app/hooks/useLogin";
 import {
@@ -12,7 +14,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const Login = () => {

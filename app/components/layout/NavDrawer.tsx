@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 type Prop = {
   isOpen: boolean;
@@ -21,7 +21,7 @@ type Prop = {
 };
 
 const NavDrawer = ({ isOpen, onClose }: Prop) => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -51,9 +51,7 @@ const NavDrawer = ({ isOpen, onClose }: Prop) => {
                   <li key={index}>
                     <Link
                       href={item.path}
-                      className={`${
-                        router.pathname === item.path ? active : null
-                      }`}
+                      className={`${pathname === item.path ? active : null}`}
                     >
                       {item.name}
                     </Link>

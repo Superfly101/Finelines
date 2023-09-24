@@ -1,7 +1,8 @@
-import useAuthContext from "@/app/hooks/useAuthContext";
+"use client";
+
 import { HamburgerIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import UserMenu from "./UserMenu";
 import { NAV_ITEMS } from "@/app/constants/NavItems";
 import NavDrawer from "./NavDrawer";
@@ -12,15 +13,10 @@ type Prop = {
   user: User;
 };
 
-const Header = () => {
-  const router = useRouter();
-  const { onOpen, isOpen, onClose } = useDisclosure();
+const Header = ({ user }: Prop) => {
+  const pathname = usePathname();
 
-  const user: User = {
-    _id: "1",
-    username: "Superfly",
-    email: "Superfly@gmail.com",
-  };
+  const { onOpen, isOpen, onClose } = useDisclosure();
 
   const active = "text-blue underline underline-offset-4";
 
@@ -41,7 +37,7 @@ const Header = () => {
               <li key={index}>
                 <Link
                   href={item.path}
-                  className={`${router.pathname === item.path ? active : null}`}
+                  className={`${pathname === item.path ? active : null}`}
                 >
                   {item.name}
                 </Link>
@@ -53,7 +49,7 @@ const Header = () => {
           <UserMenu user={user} />
           {!user && (
             <div className="flex gap-4 items-center">
-              <Link href="/signup">Sign up</Link>
+              <Link href="/sign-up">Sign up</Link>
               <Link
                 href="/login"
                 className="border border-blue text-blue py-1 px-4 rounded-full"
