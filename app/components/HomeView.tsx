@@ -1,6 +1,7 @@
 "use client";
 
-import { IconButton, useDisclosure, useToast } from "@chakra-ui/react";
+import { useDisclosure, useToast } from "@chakra-ui/react";
+import IconButton from "./ui/IconButton";
 import { AddIcon } from "@chakra-ui/icons";
 import useAuthContext from "../hooks/useAuthContext";
 import useCustomToast from "../hooks/useCustomToast";
@@ -32,13 +33,8 @@ export default function HomeView() {
       <PickupLinesList />
       <IconButton
         onClick={handleClick}
-        position="fixed"
-        bottom="6"
-        right="6"
-        colorScheme="blue"
         aria-label="Add your own pickup line"
-        size="lg"
-        borderRadius="full"
+        className="fixed bottom-8 right-8 rounded-full w-12 h-12 z-10 bg-blue"
         icon={<AddIcon />}
       />
 

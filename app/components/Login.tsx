@@ -1,6 +1,5 @@
 "use client";
 
-import useAuthContext from "@/app/hooks/useAuthContext";
 import useLogin from "@/app/hooks/useLogin";
 import {
   Alert,
@@ -9,13 +8,13 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Button,
   FormErrorMessage,
   Heading,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import MyButton from "./ui/Button";
+import Button from "./ui/Button";
 
 const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
@@ -85,14 +84,14 @@ const Login = () => {
           </FormControl>
 
           <div className="flex flex-col py-2 gap-2">
-            <Button
-              colorScheme="blue"
+            <MyButton
               isLoading={isLoading}
               type="submit"
               loadingText="Submitting..."
+              className="bg-blue"
             >
               Log in
-            </Button>
+            </MyButton>
 
             <small className="text-center font-[500]">
               Don't have an account? <Link href="/signup">Sign up</Link>

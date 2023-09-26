@@ -10,10 +10,11 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Button,
   Checkbox,
   Heading,
 } from "@chakra-ui/react";
+import Button from "./ui/Button";
+import MyButton from "./ui/Button";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -91,9 +92,9 @@ const Signup = () => {
 
           <Checkbox> Show password</Checkbox>
           <div className="flex flex-col gap-2 pt-4">
-            <Button disabled={isLoading} colorScheme="blue" type="submit">
+            <MyButton type="submit" className="bg-blue">
               Sign up
-            </Button>
+            </MyButton>
 
             <small className="text-center font-[500]">
               Have an existing account? <Link href="/login">Login</Link>

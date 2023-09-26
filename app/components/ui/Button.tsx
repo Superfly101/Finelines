@@ -1,27 +1,40 @@
+import { Button } from "@chakra-ui/react";
+
 type ButtonProp = {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
-  type?: string;
+  type?: "button" | "submit" | "reset" | undefined;
+  isLoading?: boolean;
+  loadingText?: string;
 };
 
-const Button = ({ children, onClick, className, type }: ButtonProp) => {
-  const primaryBtnClass: string =
-    "text-white bg-primary border-primary hover:text-primary hover:bg-transparent";
-  const secondaryBtnClass: string =
-    type === "secondary"
-      ? "text-primary bg-transparent border-primary hover:text-white hover:bg-primary"
-      : "";
+const MyButton = ({
+  children,
+  onClick,
+  className,
+  type,
+  isLoading,
+  loadingText,
+}: ButtonProp) => {
+  // const primaryBtnClass: string =
+  //   "text-white bg-primary border-primary hover:text-primary hover:bg-transparent";
+  // const secondaryBtnClass: string =
+  //   type === "secondary"
+  //     ? "text-primary bg-transparent border-primary hover:text-white hover:bg-primary"
+  //     : "";
   return (
-    <button
-      className={`py-1 px-4 border-2 rounded-full ${
-        !type ? primaryBtnClass : secondaryBtnClass
-      } ${className}`}
+    <Button
+      className={`py-1 px-4 border-2 rounded-full text-white ${className}`}
       onClick={onClick}
+      isLoading={isLoading}
+      loadingText={loadingText}
+      disabled={isLoading}
+      type={type}
     >
       {children}
-    </button>
+    </Button>
   );
 };
 
-export default Button;
+export default MyButton;
