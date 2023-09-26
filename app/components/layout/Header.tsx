@@ -12,13 +12,9 @@ import useAuthContext from "@/app/hooks/useAuthContext";
 import { useEffect } from "react";
 import { type } from "os";
 
-type Prop = {
-  user: User;
-};
-
-const Header = ({ user }: Prop) => {
+const Header = () => {
   const pathname = usePathname();
-  const { dispatch } = useAuthContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     // dispatch({ type: "LOGIN", payload: user });

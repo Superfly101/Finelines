@@ -15,7 +15,7 @@ import useAuthContext from "@/app/hooks/useAuthContext";
 import useLogout from "@/app/hooks/useLogout";
 import Link from "next/link";
 import { User } from "@/app/models/User";
-const UserMenu = ({ user }: { user: User }) => {
+const UserMenu = ({ user }: { user: User | null }) => {
   const { logout } = useLogout();
   const { colorMode, toggleColorMode } = useColorMode();
 

@@ -21,8 +21,6 @@ const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
-  const { user } = useAuthContext();
-  const router = useRouter();
 
   const { login, error, isLoading } = useLogin();
 

@@ -40,6 +40,8 @@ const AuthContextProvider = ({ children }: CtxProp) => {
         console.log(error);
       }
     };
+
+    getUser();
   }, []);
 
   return (
