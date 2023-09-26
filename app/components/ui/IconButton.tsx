@@ -1,4 +1,4 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 
 type ButtonProp = {
   active?: boolean;
@@ -11,10 +11,10 @@ type ButtonProp = {
 const IconButton = ({ icon, onClick, className, children }: ButtonProp) => {
   return (
     <Button onClick={onClick} className={className}>
-      <Text className="flex gap-2 items-center">
+      <Box className="flex gap-2 items-center">
         {children}
         <span>{icon}</span>
-      </Text>
+      </Box>
     </Button>
   );
 };

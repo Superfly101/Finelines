@@ -88,7 +88,7 @@ const Login = () => {
               isLoading={isLoading}
               type="submit"
               loadingText="Submitting..."
-              className="bg-blue"
+              className="bg-blue hover:bg-blue-300"
             >
               Log in
             </MyButton>

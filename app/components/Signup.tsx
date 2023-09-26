@@ -92,7 +92,7 @@ const Signup = () => {
 
           <Checkbox> Show password</Checkbox>
           <div className="flex flex-col gap-2 pt-4">
-            <MyButton type="submit" className="bg-blue">
+            <MyButton type="submit" className="bg-blue hover:bg-blue-300">
               Sign up
             </MyButton>
 
