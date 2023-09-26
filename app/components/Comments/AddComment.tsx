@@ -1,10 +1,9 @@
 import useAuthContext from "@/app/hooks/useAuthContext";
-import { Avatar, Input, useToast } from "@chakra-ui/react";
-import { useState } from "react";
-import { Comment } from "@/app/models/Comment";
+import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { PickupLine } from "@/app/models/pickupLine";
-import useCustomToast from "@/app/hooks/useCustomToast";
+import { Avatar, Input, useToast } from "@chakra-ui/react";
+import { useState } from "react";
 
 type Prop = { id: string; addComment: (comment: Comment) => void };
 

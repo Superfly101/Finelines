@@ -1,4 +1,6 @@
 import { apiUrl } from "@/app/constants";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import useAuthContext from "./useAuthContext";
 
@@ -6,6 +8,8 @@ const useLogin = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
+
+  const router = useRouter();
 
   const login = async (username: string, email: string, password: string) => {
     setIsLoading(true);
@@ -27,18 +31,15 @@ const useLogin = () => {
       return;
     }
 
-    console.log(response);
-
-    // Save user to local storage
-    // localStorage.setItem("user", JSON.stringify(result));
-
     // update auth context
     dispatch({ type: "LOGIN", payload: result });
 
     setIsLoading(false);
+    setError("");
+    router.push("/");
   };
 
-  return { login, isLoading, error };
+  return { login, error, isLoading };
 };
 
 export default useLogin;

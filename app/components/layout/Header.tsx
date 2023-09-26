@@ -8,6 +8,9 @@ import { NAV_ITEMS } from "@/app/constants/NavItems";
 import NavDrawer from "./NavDrawer";
 import { Heading, useDisclosure } from "@chakra-ui/react";
 import { User } from "@/app/models/User";
+import useAuthContext from "@/app/hooks/useAuthContext";
+import { useEffect } from "react";
+import { type } from "os";
 
 type Prop = {
   user: User;
@@ -15,6 +18,11 @@ type Prop = {
 
 const Header = ({ user }: Prop) => {
   const pathname = usePathname();
+  const { dispatch } = useAuthContext();
+
+  useEffect(() => {
+    // dispatch({ type: "LOGIN", payload: user });
+  }, []);
 
   const { onOpen, isOpen, onClose } = useDisclosure();
 

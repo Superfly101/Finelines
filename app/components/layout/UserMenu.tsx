@@ -20,6 +20,7 @@ const UserMenu = ({ user }: { user: User }) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const handleLogout = () => {
+    console.log("logging out");
     logout();
   };
 

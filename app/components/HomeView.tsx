@@ -1,12 +1,12 @@
 "use client";
 
-import HeroSection from "@/components/HeroSection";
-import PickupLineList from "@/components/Finelines/PickupLineList";
 import { IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import AddFineline from "@/components/Finelines/AddFineline";
-import useAuthContext from "@/app/hooks/useAuthContext";
-import useCustomToast from "@/app/hooks/useCustomToast";
+import useAuthContext from "../hooks/useAuthContext";
+import useCustomToast from "../hooks/useCustomToast";
+import HeroSection from "./HeroSection";
+import PickupLinesList from "./Finelines/PickupLineList";
+import AddFineline from "./Finelines/AddFineline";
 
 export default function HomeView() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +29,7 @@ export default function HomeView() {
   return (
     <>
       <HeroSection onAddFineline={handleClick} />
-      <PickupLineList />
+      <PickupLinesList />
       <IconButton
         onClick={handleClick}
         position="fixed"

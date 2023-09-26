@@ -35,12 +35,6 @@ const Login = () => {
     userRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    if (!error && user) {
-      router.push("/");
-    }
-  }, [error, user]);
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 

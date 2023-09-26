@@ -13,20 +13,28 @@ export const metadata: Metadata = {
 async function getUser() {
   const jwt = cookies().get("jwt");
 
-  const res = await fetch(`${apiUrl}/users/profile`, {
-    cache: "no-store",
-    credentials: "include",
-    headers: {
-      Cookie: `jwt=${jwt?.value}`,
-    },
-  });
-  const user = await res.json();
+  try {
+    console.log("running");
+    const res = await fetch(`${apiUrl}/users/profile`, {
+      next: {
+        tags: ["user"],
+      },
+      cache: "no-store",
+      credentials: "include",
+      headers: {
+        Cookie: `jwt=${jwt?.value}`,
+      },
+    });
+    const user = await res.json();
 
-  if (!res.ok) {
-    return undefined;
+    if (!res.ok) {
+      return undefined;
+    }
+
+    return user;
+  } catch (error) {
+    console.log(error);
   }
-
-  return user;
 }
 
 export default async function RootLayout({

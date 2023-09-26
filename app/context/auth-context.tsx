@@ -7,6 +7,7 @@ import {
   authReducer,
 } from "@/app/reducers/auth";
 import { createContext, Dispatch, useEffect, useReducer } from "react";
+import { apiUrl } from "../constants";
 
 type CtxProp = {
   children: React.ReactNode;
@@ -23,12 +24,22 @@ const AuthContextProvider = ({ children }: CtxProp) => {
   const [state, dispatch] = useReducer(authReducer, authInitialState);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const getUser = async () => {
+      try {
+        const res = await fetch(`${apiUrl}/users/profile`, {
+          credentials: "include",
+        });
+        const user = await res.json();
 
-    if (data) {
-      const user = JSON.parse(data);
-      dispatch({ type: "LOGIN", payload: user });
-    }
+        if (!res.ok) {
+          return null;
+        }
+
+        dispatch({ type: "LOGIN", payload: user });
+      } catch (error) {
+        console.log(error);
+      }
+    };
   }, []);
 
   return (
