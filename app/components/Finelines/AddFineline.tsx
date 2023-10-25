@@ -2,8 +2,8 @@ import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { PickupLine } from "@/app/models/pickupLine";
 import { SmallCloseIcon } from "@chakra-ui/icons";
+import MyButton from "../ui/Button";
 import {
-  Button,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -18,6 +18,8 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import IconButton from "../ui/IconButton";
+import { apiUrl } from "@/app/constants";
 
 type Prop = {
   isOpen: boolean;
@@ -60,7 +62,7 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
 
     setIsLoading(true);
 
-    const response = await fetch(`http://localhost:5000/api/pickup-lines/`, {
+    const response = await fetch(`${apiUrl}/pickup-lines/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,57 +107,52 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
             </FormControl>
             <FormControl>
               <FormLabel pos="relative">Tags: </FormLabel>
-              <Input
-                placeholder="Eg. Anime, Dirty, Football"
-                onChange={(e) => setTagValue(e.target.value)}
-                value={tagValue}
-                onKeyDown={handleKeyDown}
-              />
+              <div className="flex">
+                <Input
+                  placeholder="Eg. Anime, Dirty, Football"
+                  onChange={(e) => setTagValue(e.target.value)}
+                  value={tagValue}
+                  onKeyDown={handleKeyDown}
+                />
+                <MyButton
+                  color="blue"
+                  isDisabled={!tagIsvalid}
+                  onClick={addTag}
+                >
+                  Add
+                </MyButton>
+              </div>
+
               <FormHelperText>Maximum of 5 tags</FormHelperText>
-              <Button
-                pos="absolute"
-                right="0"
-                top="8"
-                colorScheme="blue"
-                zIndex="modal"
-                isDisabled={!tagIsvalid}
-                onClick={addTag}
-              >
-                Add
-              </Button>
+
               <div className="flex py-2 gap-1 flex-wrap">
                 {tags.map((tag, index) => (
-                  <Button
+                  <IconButton
                     onClick={removeTag}
                     key={index}
-                    colorScheme="green"
-                    borderRadius="full"
-                    size="sm"
-                    iconSpacing=".9"
-                    paddingRight="1"
-                    fontWeight="normal"
-                    rightIcon={<SmallCloseIcon />}
+                    className="bg-green-600 rounded-full text-sm px-3 py-2 h-fit flex items-center"
+                    icon={<SmallCloseIcon />}
                   >
                     {tag}
-                  </Button>
+                  </IconButton>
                 ))}
               </div>
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button
-              mr="3"
-              colorScheme="green"
+            <MyButton
+              color="green"
               type="submit"
               isDisabled={fineline === ""}
               isLoading={isLoading}
               loadingText="Submitting..."
+              className=" mr-3"
             >
               Submit
-            </Button>
-            <Button onClick={onClose} colorScheme="red">
+            </MyButton>
+            <MyButton color="red" onClick={onClose}>
               Cancel
-            </Button>
+            </MyButton>
           </ModalFooter>
         </form>
       </ModalContent>

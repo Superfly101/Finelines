@@ -5,8 +5,12 @@ type ButtonProp = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
+  color: "red" | "green" | "blue" | "yellow";
   isLoading?: boolean;
   loadingText?: string;
+  isDisabled?: boolean;
+  rightIcon?: React.ReactNode;
+  leftIcon?: React.ReactNode;
 };
 
 const MyButton = ({
@@ -16,24 +20,29 @@ const MyButton = ({
   type,
   isLoading,
   loadingText,
+  isDisabled,
+  color,
+  rightIcon,
+  leftIcon,
 }: ButtonProp) => {
-  // const primaryBtnClass: string =
-  //   "text-white bg-primary border-primary hover:text-primary hover:bg-transparent";
-  // const secondaryBtnClass: string =
-  //   type === "secondary"
-  //     ? "text-primary bg-transparent border-primary hover:text-white hover:bg-primary"
-  //     : "";
+  const colors = {
+    red: "bg-[#E53E3E] hover:bg-[#C53030]",
+    blue: "bg-[#00A0DC] hover:bg-[#008CC9]",
+    green: "bg-[#38A169] hover:bg-[#276749]",
+    yellow: "bg-[#DD6B20] hover:bg-[#C05621]",
+  };
+
   return (
-    <Button
-      className={`py-1 px-4 border-2 rounded-full text-white ${className}`}
+    <button
+      className={`py-2 px-4 text-white flex justify-center gap-2 ${className} ${colors[color]} disabled:opacity-60`}
       onClick={onClick}
-      isLoading={isLoading}
-      loadingText={loadingText}
-      disabled={isLoading}
+      disabled={isDisabled || isLoading}
       type={type}
     >
-      {children}
-    </Button>
+      <span>{leftIcon}</span>
+      {isLoading ? <span>{loadingText}</span> : <span>{children}</span>}
+      <span>{rightIcon}</span>
+    </button>
   );
 };
 

@@ -3,35 +3,39 @@ import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { useEffect, useState } from "react";
 import PickupLineItem from "./PickupLineItem";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import useFineline from "@/app/hooks/useFineline";
 
 const PickupLinesList = () => {
-  const { finelines, dispatch } = useFinelinesContext();
-  const [isLoading, setIsLoading] = useState(false);
+  // const { finelines, dispatch } = useFinelinesContext();
+  // const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchFinelines = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`${apiUrl}/pickup-lines`);
+  // useEffect(() => {
+  //   const fetchFinelines = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const response = await fetch(`${apiUrl}/pickup-lines`);
 
-        const data = await response.json();
+  //       const data = await response.json();
 
-        if (!response.ok) {
-          console.log(data);
-          setIsLoading(false);
-          return;
-        }
+  //       if (!response.ok) {
+  //         console.log(data);
+  //         setIsLoading(false);
+  //         return;
+  //       }
 
-        dispatch({ type: "GET_FINELINES", payload: data });
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-        setIsLoading(false);
-      }
-    };
+  //       dispatch({ type: "GET_FINELINES", payload: data });
+  //       setIsLoading(false);
+  //     } catch (err) {
+  //       console.log(err);
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchFinelines();
-  }, []);
+  //   fetchFinelines();
+  // }, []);
+
+  const { isLoading, finelines } = useFineline({ status: "approved" });
+
   return (
     <section>
       {isLoading ? (
