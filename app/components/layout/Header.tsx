@@ -4,6 +4,7 @@ import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import UserMenu from "./UserMenu";
+import { User } from "@/app/models/User";
 import { NAV_ITEMS } from "@/app/constants/NavItems";
 import NavDrawer from "./NavDrawer";
 import {
@@ -12,17 +13,16 @@ import {
   IconButton,
   useColorMode,
 } from "@chakra-ui/react";
-import { User } from "@/app/models/User";
 import useAuthContext from "@/app/hooks/useAuthContext";
 import { useEffect } from "react";
 
-const Header = () => {
+const Header = ({ user }: { user: User }) => {
   const pathname = usePathname();
-  const { user } = useAuthContext();
+  const { user: authUser, dispatch } = useAuthContext();
   const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
-    // dispatch({ type: "LOGIN", payload: user });
+    dispatch({ type: "LOGIN", payload: user });
   }, []);
 
   const { onOpen, isOpen, onClose } = useDisclosure();
@@ -62,8 +62,8 @@ const Header = () => {
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             />
           </div>
-          <UserMenu user={user} />
-          {!user && (
+          <UserMenu user={authUser} />
+          {!authUser && (
             <div className="flex gap-4 items-center">
               <Link href="/sign-up" className="hidden md:block">
                 Sign up

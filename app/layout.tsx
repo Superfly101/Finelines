@@ -10,43 +10,45 @@ export const metadata: Metadata = {
   description: "Welcome to Next.js",
 };
 
-// async function getUser() {
-//   const jwt = cookies().get("jwt");
+async function getUser() {
+  const jwt = cookies().get("jwt");
 
-//   try {
-//     console.log("running");
-//     const res = await fetch(`${apiUrl}/users/profile`, {
-//       next: {
-//         tags: ["user"],
-//       },
-//       cache: "no-store",
-//       credentials: "include",
-//       headers: {
-//         Cookie: `jwt=${jwt?.value}`,
-//       },
-//     });
-//     const user = await res.json();
+  try {
+    console.log("running");
+    const res = await fetch(`${apiUrl}/users/profile`, {
+      next: {
+        tags: ["user"],
+      },
+      cache: "no-store",
+      credentials: "include",
+      headers: {
+        Cookie: `jwt=${jwt?.value}`,
+      },
+    });
+    const user = await res.json();
 
-//     if (!res.ok) {
-//       return undefined;
-//     }
+    if (!res.ok) {
+      return null;
+    }
 
-//     return user;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getUser();
+
   return (
     <html lang="en">
       <body>
         <Providers>
-          <Header />
+          <Header user={user} />
           {children}
         </Providers>
       </body>

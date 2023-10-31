@@ -1,4 +1,5 @@
 import { apiUrl } from "@/app/constants";
+import useAuthContext from "@/app/hooks/useAuthContext";
 import { PickupLine } from "@/app/models/pickupLine";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
@@ -6,9 +7,11 @@ import { useState } from "react";
 import MyButton from "../ui/Button";
 import CustomModal from "../ui/CustomModal";
 
-const Pending = ({ _id, user, text, tags }: PickupLine) => {
+const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [action, setAction] = useState<string | null>(null);
+
+  const { user: authUser } = useAuthContext();
 
   const updatePickupline = async (action: string) => {
     const res = await fetch(`${apiUrl}/pickup-lines/${_id}`, {
@@ -78,17 +81,23 @@ const Pending = ({ _id, user, text, tags }: PickupLine) => {
             </small>
           )}
           <div className="flex gap-4 pt-4">
-            <MyButton
-              color="blue"
-              rightIcon={<CheckIcon />}
-              className="w-full"
-              onClick={handleApprove}
-            >
-              Approve
-            </MyButton>
-            <MyButton color="red" className="w-full" onClick={handleReject}>
-              Reject
-            </MyButton>
+            {authUser?.isAdmin ? (
+              <>
+                <MyButton
+                  color="blue"
+                  rightIcon={<CheckIcon />}
+                  className="w-full"
+                  onClick={handleApprove}
+                >
+                  Approve
+                </MyButton>
+                <MyButton color="red" className="w-full" onClick={handleReject}>
+                  Reject
+                </MyButton>
+              </>
+            ) : (
+              <p>Status: {status}</p>
+            )}
           </div>
         </section>
       </li>

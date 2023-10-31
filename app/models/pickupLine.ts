@@ -6,4 +6,5 @@ export type PickupLine = {
   likes: string[];
   comments: string[];
   createdAt: string;
+  status: boolean;
 };
