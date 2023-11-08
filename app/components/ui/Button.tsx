@@ -21,7 +21,7 @@ const MyButton = ({
   isLoading,
   loadingText,
   isDisabled,
-  color,
+  color = "blue",
   rightIcon,
   leftIcon,
 }: ButtonProp) => {
