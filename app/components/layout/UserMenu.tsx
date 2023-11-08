@@ -19,7 +19,6 @@ const UserMenu = ({ user }: { user: User | null }) => {
   const { logout } = useLogout();
 
   const handleLogout = () => {
-    console.log("logging out");
     logout();
   };
 

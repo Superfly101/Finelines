@@ -12,8 +12,6 @@ const useFineline = ({ status, username, isAdmin }: params) => {
   const [isLoading, setIsLoading] = useState<boolean | null>(null);
   const [finelines, setFinelines] = useState<PickupLine[]>([]);
 
-  console.log(apiUrl);
-
   useEffect(() => {
     const fetchFinelines = async () => {
       try {
