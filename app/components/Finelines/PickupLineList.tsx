@@ -1,6 +1,3 @@
-import { apiUrl } from "@/app/constants";
-import useFinelinesContext from "@/app/hooks/useFinelinesContext";
-import { useEffect, useState } from "react";
 import PickupLineItem from "./PickupLineItem";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/app/hooks/useFineline";
@@ -34,7 +31,10 @@ const PickupLinesList = () => {
   //   fetchFinelines();
   // }, []);
 
-  const { isLoading, finelines } = useFineline({ status: "approved" });
+  const { isLoading, finelines } = useFineline({
+    status: "approved",
+    isAdmin: false,
+  });
 
   return (
     <section>

@@ -14,7 +14,6 @@ async function getUser() {
   const jwt = cookies().get("jwt");
 
   try {
-    console.log("running");
     const res = await fetch(`${apiUrl}/users/profile`, {
       next: {
         tags: ["user"],
