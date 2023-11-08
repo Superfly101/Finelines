@@ -36,7 +36,7 @@ const PickupLineItem = ({
     } else {
       setIsLiked(false);
     }
-  }, [currentUser]);
+  }, [currentUser, likes]);
 
   const handleLike = async () => {
     if (!currentUser) {

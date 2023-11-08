@@ -85,6 +85,7 @@ const Login = () => {
 
           <div className="flex flex-col py-2 gap-2">
             <MyButton
+              color="blue"
               isLoading={isLoading}
               type="submit"
               loadingText="Submitting..."
@@ -94,7 +95,7 @@ const Login = () => {
             </MyButton>
 
             <small className="text-center font-[500]">
-              Don't have an account? <Link href="/signup">Sign up</Link>
+              Don&apos;t have an account? <Link href="/signup">Sign up</Link>
             </small>
           </div>
         </form>

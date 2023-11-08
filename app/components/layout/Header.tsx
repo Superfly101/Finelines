@@ -23,7 +23,7 @@ const Header = ({ user }: { user: User }) => {
 
   useEffect(() => {
     dispatch({ type: "LOGIN", payload: user });
-  }, []);
+  }, [dispatch, user]);
 
   const { onOpen, isOpen, onClose } = useDisclosure();
 

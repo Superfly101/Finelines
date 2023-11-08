@@ -86,8 +86,8 @@ const FinelineMenu = ({ id, username }: Prop) => {
           <AlertDialogContent>
             <AlertDialogHeader>Delete Fineline</AlertDialogHeader>
             <AlertDialogBody>
-              Are you sure you want to delete this pickup line? You can't undo
-              this action afterwards?
+              Are you sure you want to delete this pickup line? You can&apos;t
+              undo this action afterwards?
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>

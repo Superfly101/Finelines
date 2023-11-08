@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import AddComment from "./AddComment";
 import CommentItem from "./Comment";
+import { apiUrl } from "../../constants/index";
 
 const CommentList = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -14,9 +15,7 @@ const CommentList = ({ id }: { id: string }) => {
   useEffect(() => {
     const fetchComments = async () => {
       setIsLoading(true);
-      const response = await fetch(
-        `http://localhost:5000/api/pickup-lines/${id}/comments`
-      );
+      const response = await fetch(`${apiUrl}/pickup-lines/${id}/comments`);
 
       const result = await response.json();
 
@@ -31,7 +30,7 @@ const CommentList = ({ id }: { id: string }) => {
     };
 
     fetchComments();
-  }, []);
+  }, [id]);
   return (
     <section>
       <AddComment id={id} addComment={handleAddComment} />
