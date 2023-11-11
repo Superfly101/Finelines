@@ -4,6 +4,8 @@ import { Providers } from "./providers";
 import Header from "./components/layout/Header";
 import { apiUrl } from "./constants";
 import { cookies } from "next/headers";
+import { ColorModeScript } from "@chakra-ui/react";
+import theme from "@/theme";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -47,6 +49,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <Providers>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Header user={user} />
           {children}
         </Providers>

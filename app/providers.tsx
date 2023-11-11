@@ -1,7 +1,8 @@
 "use client";
 
+import theme from "@/theme";
 import { CacheProvider } from "@chakra-ui/next-js";
-import { ChakraProvider, theme } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import AuthContextProvider from "./context/auth-context";
 import FinelineContextProvider from "./context/fineline-context";
 
