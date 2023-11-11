@@ -8,11 +8,11 @@ const useSignup = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { addToast } = useCustomToast();
 
   const signup = async (username: string, email: string, password: string) => {
     setIsLoading(true);
     setError("");
-    const { addToast } = useCustomToast();
 
     const response = await fetch(`${apiUrl}/users`, {
       method: "POST",
@@ -36,6 +36,7 @@ const useSignup = () => {
     });
 
     router.push("/login");
+
     setIsLoading(false);
   };
 
