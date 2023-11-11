@@ -2,7 +2,7 @@ import { apiUrl } from "@/app/constants";
 import useAuthContext from "./useAuthContext";
 
 const useLogout = () => {
-  const { dispatch } = useAuthContext();
+  // const { dispatch } = useAuthContext();
   const logout = async () => {
     try {
       await fetch(`${apiUrl}/users/logout`, {
@@ -14,7 +14,7 @@ const useLogout = () => {
       // localStorage.removeItem("user");
 
       // Dispatch logout action
-      dispatch({ type: "LOGOUT" });
+      // dispatch({ type: "LOGOUT" });
     } catch (error) {
       console.log(error);
     }

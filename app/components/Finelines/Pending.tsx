@@ -3,6 +3,7 @@ import useAuthContext from "@/app/hooks/useAuthContext";
 import { PickupLine } from "@/app/models/pickupLine";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import MyButton from "../ui/Button";
 import CustomModal from "../ui/CustomModal";
@@ -11,7 +12,8 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [action, setAction] = useState<string | null>(null);
 
-  const { user: authUser } = useAuthContext();
+  // const { user: authUser } = useAuthContext();
+  const { data: session } = useSession();
 
   const updatePickupline = async (action: string) => {
     const res = await fetch(`${apiUrl}/pickup-lines/${_id}`, {
@@ -81,7 +83,7 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
             </small>
           )}
           <div className="flex gap-4 pt-4">
-            {authUser?.isAdmin ? (
+            {session?.user?.isAdmin ? (
               <>
                 <MyButton
                   color="blue"

@@ -1,6 +1,7 @@
 "use client";
 
 import { Text } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Pending from "../components/Finelines/Pending";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
@@ -8,12 +9,13 @@ import useAuthContext from "../hooks/useAuthContext";
 import useFineline from "../hooks/useFineline";
 
 const Page = () => {
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
+  const { data: session } = useSession();
 
   const { finelines, isLoading } = useFineline({
     status: "pending",
-    username: user ? user.username : null,
-    isAdmin: user ? user.isAdmin : false,
+    username: session?.user ? session?.user.username : null,
+    isAdmin: session?.user ? session?.user.isAdmin : false,
   });
 
   return (

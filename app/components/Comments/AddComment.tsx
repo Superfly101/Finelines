@@ -9,7 +9,7 @@ import { useState } from "react";
 type Prop = { id: string; addComment: (comment: Comment) => void };
 
 const AddComment = ({ id, addComment }: Prop) => {
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch, finelines } = useFinelinesContext();
@@ -20,10 +20,10 @@ const AddComment = ({ id, addComment }: Prop) => {
 
     setIsLoading(true);
 
-    if (!user) {
-      addToast({ status: "error" });
-      return;
-    }
+    // if (!user) {
+    //   addToast({ status: "error" });
+    //   return;
+    // }
 
     const response = await fetch(
       `http://localhost:5000/api/pickup-lines/${id}/comments`,
