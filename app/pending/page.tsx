@@ -22,7 +22,7 @@ const Page = () => {
         <LoadingSpinner />
       ) : (
         <ul className="flex flex-col gap-4">
-          {finelines.length !== 0 ? (
+          {finelines.length ? (
             finelines.map((fineline) => (
               <Pending key={fineline._id} {...fineline} />
             ))
