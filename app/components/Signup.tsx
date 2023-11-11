@@ -13,7 +13,6 @@ import {
   Checkbox,
   Heading,
 } from "@chakra-ui/react";
-import Button from "./ui/Button";
 import MyButton from "./ui/Button";
 
 const Signup = () => {
@@ -25,6 +24,7 @@ const Signup = () => {
 
   const { username, email, password } = formData;
   const { signup, error, isLoading } = useSignup();
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -47,7 +47,7 @@ const Signup = () => {
           Sign up
         </Heading>
         <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="username">Username</FormLabel>
             <Input
               placeholder="Username"
@@ -60,7 +60,7 @@ const Signup = () => {
               }
             />
           </FormControl>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               type="email"
@@ -75,10 +75,10 @@ const Signup = () => {
             />
           </FormControl>
 
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
-              type="password"
+              type={isShowPassword ? "text" : "password"}
               placeholder="Password"
               id="password"
               onChange={(e) =>
@@ -90,12 +90,16 @@ const Signup = () => {
             />
           </FormControl>
 
-          <Checkbox> Show password</Checkbox>
+          <Checkbox onChange={() => setIsShowPassword((current) => !current)}>
+            Show password
+          </Checkbox>
           <div className="flex flex-col gap-2 pt-4">
             <MyButton
               color="blue"
               type="submit"
               className="bg-blue hover:bg-blue-300"
+              isLoading={isLoading}
+              loadingText="Submitting"
             >
               Sign up
             </MyButton>
