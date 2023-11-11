@@ -14,7 +14,6 @@ import {
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import MyButton from "./ui/Button";
-import Button from "./ui/Button";
 
 const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
@@ -53,14 +52,14 @@ const Login = () => {
 
   return (
     <section className="px-4 pb-16 flex min-h-[calc(100vh-80px)] items-center">
-      <div className="w-full border border-secondary p-4 rounded-md max-w-[25rem] mx-auto">
+      <div className="w-full border py-6 px-6 rounded-md max-w-[25rem] mx-auto shadow-xl">
         {error && (
           <Alert status="error">
             <AlertIcon />
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-        <Heading color="blue.500" size="md" className="mb-4 text-center">
+        <Heading size="md" className="mb-4 text-center">
           Sign in
         </Heading>
         <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
