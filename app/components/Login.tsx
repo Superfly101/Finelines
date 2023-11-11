@@ -87,14 +87,14 @@ const Login = () => {
               color="blue"
               isLoading={isLoading}
               type="submit"
-              loadingText="Submitting..."
+              loadingText="Signing In..."
               className="bg-blue hover:bg-blue-300"
             >
-              Log in
+              Sign in
             </MyButton>
 
             <small className="text-center font-[500]">
-              Don&apos;t have an account? <Link href="/signup">Sign up</Link>
+              Don&apos;t have an account? <Link href="/sign-up">Sign up</Link>
             </small>
           </div>
         </form>
