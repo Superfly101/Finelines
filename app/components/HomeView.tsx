@@ -1,6 +1,6 @@
 "use client";
 
-import { useDisclosure, useToast } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import IconButton from "./ui/IconButton";
 import { AddIcon } from "@chakra-ui/icons";
 import useAuthContext from "../hooks/useAuthContext";
@@ -16,7 +16,6 @@ export default function HomeView() {
 
   const handleClick = () => {
     if (!user) {
-      console.log("Showing toast");
       addToast({
         title: "Please sign in to add to your pickup line",
         status: "error",
@@ -30,7 +29,7 @@ export default function HomeView() {
   return (
     <>
       <HeroSection onAddFineline={handleClick} />
-      <PickupLinesList />
+      <PickupLinesList onAddFineline={handleClick} />
       <IconButton
         onClick={handleClick}
         aria-label="Add your own pickup line"

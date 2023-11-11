@@ -3,7 +3,7 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/app/hooks/useFineline";
 import MyButton from "../ui/Button";
 
-const PickupLinesList = () => {
+const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   const { isLoading, finelines } = useFineline({
     status: "approved",
     isAdmin: false,
@@ -22,7 +22,11 @@ const PickupLinesList = () => {
       ) : (
         <div className="flex flex-col gap-4 p-4 text-center">
           <h3 className="font-semibold">No Pickupline found</h3>
-          <MyButton color="blue" className="font-semibold">
+          <MyButton
+            color="blue"
+            className="font-semibold"
+            onClick={onAddFineline}
+          >
             Submit pickup line
           </MyButton>
         </div>

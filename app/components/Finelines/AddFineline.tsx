@@ -1,6 +1,5 @@
 import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
-import { PickupLine } from "@/app/models/pickupLine";
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import MyButton from "../ui/Button";
 import {
