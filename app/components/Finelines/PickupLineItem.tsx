@@ -3,6 +3,7 @@ import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { PickupLine } from "@/app/models/pickupLine";
 import { Avatar, Text } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import CommentSection from "../Comments/CommentSection";
 import CommentIcon from "../icons/CommentIcon";
@@ -25,21 +26,23 @@ const PickupLineItem = ({
   showCommentSection,
 }: Prop) => {
   const [showComments, setShowComments] = useState(showCommentSection);
-  const { user: currentUser } = useAuthContext();
+  // const { user: currentUser } = useAuthContext();
+  const { data: session } = useSession();
+
   const { dispatch } = useFinelinesContext();
   const [isLiked, setIsLiked] = useState(false);
   const { addToast } = useCustomToast();
 
   useEffect(() => {
-    if (currentUser) {
-      setIsLiked(likes.includes(currentUser._id));
+    if (session?.user) {
+      setIsLiked(likes.includes(session.user._id));
     } else {
       setIsLiked(false);
     }
-  }, [currentUser, likes]);
+  }, [session?.user, likes]);
 
   const handleLike = async () => {
-    if (!currentUser) {
+    if (!session?.user) {
       addToast({ status: "error" });
       return;
     }

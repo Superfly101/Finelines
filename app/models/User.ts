@@ -3,4 +3,5 @@ export type User = {
   username: string;
   email: string;
   isAdmin: boolean;
+  role: "user" | "admin";
 };

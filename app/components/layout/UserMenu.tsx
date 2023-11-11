@@ -15,11 +15,12 @@ import useAuthContext from "@/app/hooks/useAuthContext";
 import useLogout from "@/app/hooks/useLogout";
 import Link from "next/link";
 import { User } from "@/app/models/User";
-const UserMenu = ({ user }: { user: User | null }) => {
-  const { logout } = useLogout();
+import { signOut } from "next-auth/react";
+const UserMenu = ({ user }: { user: User | undefined }) => {
+  // const { logout } = useLogout();
 
   const handleLogout = () => {
-    logout();
+    signOut();
   };
 
   return (

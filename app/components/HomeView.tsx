@@ -8,14 +8,17 @@ import useCustomToast from "../hooks/useCustomToast";
 import HeroSection from "./HeroSection";
 import PickupLinesList from "./Finelines/PickupLineList";
 import AddFineline from "./Finelines/AddFineline";
+import { useSession } from "next-auth/react";
 
 export default function HomeView() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
+  const { data: session } = useSession();
+
   const { addToast } = useCustomToast();
 
   const handleClick = () => {
-    if (!user) {
+    if (!session?.user) {
       addToast({
         title: "Please sign in to add to your pickup line",
         status: "error",

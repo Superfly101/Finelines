@@ -17,6 +17,7 @@ import {
   AlertDialogFooter,
   Button,
 } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 import BookmarkIcon from "../icons/BookmarkIcon";
 import MenuIcon from "../icons/MenuIcon";
@@ -29,7 +30,8 @@ const FinelineMenu = ({ id, username }: Prop) => {
   const { dispatch } = useFinelinesContext();
   const [isLoading, setIsLoading] = useState(false);
   const { addToast } = useCustomToast();
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
+  const { data: session } = useSession();
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -64,7 +66,7 @@ const FinelineMenu = ({ id, username }: Prop) => {
         </MenuButton>
         <Portal>
           <MenuList>
-            {user?.username === username && (
+            {session?.user?.username === username && (
               <MenuItem icon={<DeleteIcon />} color="red" onClick={onOpen}>
                 Delete Fineline
               </MenuItem>

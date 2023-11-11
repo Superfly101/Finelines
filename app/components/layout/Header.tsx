@@ -1,31 +1,23 @@
 "use client";
 
-import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import UserMenu from "./UserMenu";
 import { User } from "@/app/models/User";
-import { NAV_ITEMS } from "@/app/constants/NavItems";
-import NavDrawer from "./NavDrawer";
-import {
-  Heading,
-  useDisclosure,
-  IconButton,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Heading, IconButton, useColorMode } from "@chakra-ui/react";
 import useAuthContext from "@/app/hooks/useAuthContext";
 import { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 
 const Header = ({ user }: { user: User }) => {
-  const pathname = usePathname();
-  const { user: authUser, dispatch } = useAuthContext();
+  // const { user: authUser, dispatch } = useAuthContext();
   const { colorMode, toggleColorMode } = useColorMode();
 
-  useEffect(() => {
-    dispatch({ type: "LOGIN", payload: user });
-  }, [dispatch, user]);
+  const { data: session } = useSession();
 
-  const { onOpen, isOpen, onClose } = useDisclosure();
+  // useEffect(() => {
+  //   dispatch({ type: "LOGIN", payload: user });
+  // }, [dispatch, user]);
 
   const active = "text-blue underline underline-offset-4";
 
@@ -62,8 +54,8 @@ const Header = ({ user }: { user: User }) => {
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             />
           </div>
-          <UserMenu user={authUser} />
-          {!authUser && (
+          <UserMenu user={session?.user} />
+          {!session?.user && (
             <div className="flex gap-4 items-center">
               <Link href="/sign-up" className="hidden md:block">
                 Sign up
@@ -74,6 +66,7 @@ const Header = ({ user }: { user: User }) => {
               >
                 Sign in
               </Link>
+              <button onClick={() => signIn()}>login</button>
             </div>
           )}
         </nav>
