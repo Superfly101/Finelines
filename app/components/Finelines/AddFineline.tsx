@@ -82,7 +82,7 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
     onClose();
     dispatch({ type: "ADD_FINELINE", payload: data });
     addToast({
-      title: "Your pickup line has been added",
+      title: "Your pickup line has been submitted for review.",
       position: "top",
       href: `/finelines/${data._id}`,
     });

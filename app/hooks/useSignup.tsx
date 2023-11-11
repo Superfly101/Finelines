@@ -29,8 +29,6 @@ const useSignup = () => {
       return;
     }
 
-    // update auth context
-    // dispatch({ type: "LOGIN", payload: result });
     addToast({
       title: "Account created, please sign in",
       position: "top",
