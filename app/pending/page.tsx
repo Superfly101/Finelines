@@ -3,6 +3,7 @@
 import { Text } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect } from "react";
 import Pending from "../components/Finelines/Pending";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import useFineline from "../hooks/useFineline";
@@ -10,11 +11,19 @@ import useFineline from "../hooks/useFineline";
 const Page = () => {
   const { data: session } = useSession();
 
-  const { finelines, isLoading } = useFineline({
-    status: "pending",
-    username: session?.user ? session?.user.username : null,
-    isAdmin: session?.user ? session?.user.isAdmin : false,
-  });
+  const { finelines, isLoading, sendRequest: fetchFinelines } = useFineline();
+
+  useEffect(() => {
+    if (session?.user.role === "user") {
+      fetchFinelines({
+        url: `pickup-lines?status=pending&user=${session?.user.username}`,
+      });
+    } else if (session?.user.role === "admin") {
+      fetchFinelines({
+        url: `pickup-lines?status=pending`,
+      });
+    }
+  }, [session?.user, fetchFinelines]);
 
   return (
     <section className="px-4 py-8">

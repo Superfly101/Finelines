@@ -2,12 +2,14 @@ import PickupLineItem from "./PickupLineItem";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/app/hooks/useFineline";
 import MyButton from "../ui/Button";
+import { useEffect } from "react";
 
 const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
-  const { isLoading, finelines } = useFineline({
-    status: "approved",
-    isAdmin: false,
-  });
+  const { isLoading, finelines, sendRequest: fetchFinelines } = useFineline();
+
+  useEffect(() => {
+    fetchFinelines({ url: "pickup-lines?status=approved" });
+  }, [fetchFinelines]);
 
   return (
     <section className="flex justify-center items-center p-8 border-t-2 min-h-[50vh]">

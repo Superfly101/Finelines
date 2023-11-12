@@ -1,4 +1,5 @@
 import { apiUrl } from "@/app/constants";
+import useFineline from "@/app/hooks/useFineline";
 import { PickupLine } from "@/app/models/pickupLine";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
@@ -12,25 +13,40 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
   const [action, setAction] = useState<string | null>(null);
 
   const { data: session } = useSession();
+  const { isLoading, error, sendRequest } = useFineline();
 
   const updatePickupline = async (action: string) => {
-    const res = await fetch(`${apiUrl}/pickup-lines/${_id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session?.user.token}`,
-      },
-      body: JSON.stringify({ status: action }),
-    });
+    // const res = await fetch(`${apiUrl}/pickup-lines/${_id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${session?.user.token}`,
+    //   },
+    //   body: JSON.stringify({ status: action }),
+    // });
 
-    const data = await res.json();
+    // const data = await res.json();
 
-    if (!res.ok) {
-      console.log("An error occured:", data);
-      return;
+    // if (!res.ok) {
+    //   console.log("An error occured:", data);
+    //   return;
+    // }
+
+    // console.log(data);
+
+    if (session?.user) {
+      sendRequest({
+        url: `pickup-lines/${_id}`,
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.user.token}`,
+        },
+        body: JSON.stringify({ status: action }),
+      });
+
+      console.log("Request sent");
     }
-
-    console.log(data);
   };
 
   const handleReject = async () => {
@@ -44,6 +60,7 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
   };
 
   const handleAction = () => {
+    onClose();
     if (action === "Approve") {
       updatePickupline("approved");
     } else if (action === "Reject") {
@@ -81,17 +98,27 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
             </small>
           )}
           <div className="flex gap-4 pt-4">
-            {session?.user?.isAdmin ? (
+            {session?.user?.role == "admin" ? (
               <>
                 <MyButton
                   color="blue"
                   rightIcon={<CheckIcon />}
                   className="w-full"
                   onClick={handleApprove}
+                  isLoading={isLoading}
+                  isDisabled={isLoading}
+                  loadingText="Submitting..."
                 >
                   Approve
                 </MyButton>
-                <MyButton color="red" className="w-full" onClick={handleReject}>
+                <MyButton
+                  color="red"
+                  className="w-full"
+                  onClick={handleReject}
+                  isLoading={isLoading}
+                  isDisabled={isLoading}
+                  loadingText="Submitting..."
+                >
                   Reject
                 </MyButton>
               </>

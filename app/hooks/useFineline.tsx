@@ -1,49 +1,51 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { apiUrl } from "../constants";
 import { PickupLine } from "../models/pickupLine";
 
-type params = {
-  status: "pending" | "approved";
-  username?: string | null;
-  isAdmin: boolean;
+type Config = {
+  url: string;
+  method?: "POST" | "GET" | "PUT" | "DELETE" | "PATCH";
+  headers?: HeadersInit;
+  body?: BodyInit;
 };
 
-const useFineline = ({ status, username, isAdmin }: params) => {
-  const [isLoading, setIsLoading] = useState<boolean | null>(null);
+const useFineline = () => {
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [error, setError] = useState<string | null>(null);
   const [finelines, setFinelines] = useState<PickupLine[]>([]);
 
-  useEffect(() => {
-    const fetchFinelines = async () => {
+  const sendRequest = useCallback(
+    async ({ url, method = "GET", headers, body }: Config) => {
       try {
+        setError(null);
         setIsLoading(true);
-        if (username !== null || isAdmin) {
-          const response = await fetch(
-            `${apiUrl}/pickup-lines?status=${status}${
-              isAdmin ? "" : username ? `&user=${username}` : ""
-            }`
-          );
 
-          const data = await response.json();
+        const res = await fetch(`${apiUrl}/${url}`, {
+          method: method,
+          headers: headers ? headers : {},
+          body: body ? body : null,
+        });
 
-          if (!response.ok) {
-            console.log(data);
-            setIsLoading(false);
-            return;
-          }
+        const data = await res.json();
 
-          setFinelines(data);
+        if (!res.ok) {
+          console.log(data);
+          setError(data.message);
           setIsLoading(false);
+          return;
         }
+
+        setFinelines(data);
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
         setIsLoading(false);
       }
-    };
+    },
+    []
+  );
 
-    fetchFinelines();
-  }, [status, username, isAdmin]);
-
-  return { isLoading, finelines };
+  return { isLoading, error, finelines, sendRequest };
 };
 
 export default useFineline;
