@@ -5,11 +5,9 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Pending from "../components/Finelines/Pending";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
-import useAuthContext from "../hooks/useAuthContext";
 import useFineline from "../hooks/useFineline";
 
 const Page = () => {
-  // const { user } = useAuthContext();
   const { data: session } = useSession();
 
   const { finelines, isLoading } = useFineline({

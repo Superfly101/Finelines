@@ -1,5 +1,4 @@
 import { apiUrl } from "@/app/constants";
-import useAuthContext from "@/app/hooks/useAuthContext";
 import { PickupLine } from "@/app/models/pickupLine";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
@@ -12,7 +11,6 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [action, setAction] = useState<string | null>(null);
 
-  // const { user: authUser } = useAuthContext();
   const { data: session } = useSession();
 
   const updatePickupline = async (action: string) => {
@@ -20,8 +18,8 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.user.token}`,
       },
-      credentials: "include",
       body: JSON.stringify({ status: action }),
     });
 

@@ -1,6 +1,5 @@
 "use client";
 
-import useLogin from "@/app/hooks/useLogin";
 import {
   Alert,
   AlertIcon,
@@ -11,7 +10,9 @@ import {
   FormErrorMessage,
   Heading,
 } from "@chakra-ui/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import MyButton from "./ui/Button";
 
@@ -19,8 +20,10 @@ const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<null | string>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { login, error, isLoading } = useLogin();
+  const router = useRouter();
 
   const isValidEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,14 +50,36 @@ const Login = () => {
       username = userRef.current.value;
     }
 
-    await login(username, email, password);
+    try {
+      setError(null);
+      setIsLoading(true);
+      const res = await signIn("credentials", {
+        email,
+        username,
+        password,
+        redirect: false,
+      });
+
+      if (!res?.ok) {
+        setIsLoading(false);
+        if (res?.error && res.error.includes("CredentialsSignin")) {
+          setError("Invalid email or password");
+        }
+        return;
+      }
+
+      router.push("/");
+    } catch (error) {
+      setIsLoading(false);
+      throw error;
+    }
   };
 
   return (
     <section className="px-4 pb-16 flex min-h-[calc(100vh-80px)] items-center">
       <div className="w-full border py-6 px-6 rounded-md max-w-[25rem] mx-auto shadow-xl">
         {error && (
-          <Alert status="error">
+          <Alert status="error" className="mb-4">
             <AlertIcon />
             <AlertDescription>{error}</AlertDescription>
           </Alert>

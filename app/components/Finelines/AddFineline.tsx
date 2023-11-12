@@ -19,6 +19,7 @@ import {
 import React, { useState } from "react";
 import IconButton from "../ui/IconButton";
 import { apiUrl } from "@/app/constants";
+import { useSession } from "next-auth/react";
 
 type Prop = {
   isOpen: boolean;
@@ -30,6 +31,8 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
   const [tagValue, setTagValue] = useState("");
   const [fineline, setFineline] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { data: session } = useSession();
 
   const { dispatch } = useFinelinesContext();
   const { addToast } = useCustomToast();
@@ -65,9 +68,9 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.user.token}`,
       },
       body: JSON.stringify({ text: fineline, tags }),
-      credentials: "include",
     });
 
     const data = await response.json();

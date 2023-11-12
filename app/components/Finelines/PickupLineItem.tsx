@@ -1,4 +1,3 @@
-import useAuthContext from "@/app/hooks/useAuthContext";
 import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { PickupLine } from "@/app/models/pickupLine";
@@ -26,7 +25,6 @@ const PickupLineItem = ({
   showCommentSection,
 }: Prop) => {
   const [showComments, setShowComments] = useState(showCommentSection);
-  // const { user: currentUser } = useAuthContext();
   const { data: session } = useSession();
 
   const { dispatch } = useFinelinesContext();

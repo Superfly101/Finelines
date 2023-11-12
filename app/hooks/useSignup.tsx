@@ -1,7 +1,6 @@
 import { apiUrl } from "@/app/constants";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import useAuthContext from "./useAuthContext";
 import useCustomToast from "./useCustomToast";
 
 const useSignup = () => {

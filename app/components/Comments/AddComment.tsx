@@ -1,4 +1,3 @@
-import useAuthContext from "@/app/hooks/useAuthContext";
 import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { Comment } from "@/app/models/Comment";
@@ -9,7 +8,6 @@ import { useState } from "react";
 type Prop = { id: string; addComment: (comment: Comment) => void };
 
 const AddComment = ({ id, addComment }: Prop) => {
-  // const { user } = useAuthContext();
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch, finelines } = useFinelinesContext();
@@ -33,7 +31,6 @@ const AddComment = ({ id, addComment }: Prop) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ comment }),
-        credentials: "include",
       }
     );
 

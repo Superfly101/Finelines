@@ -7,12 +7,8 @@ import {
   MenuDivider,
   Button,
   Avatar,
-  useColorMode,
-  IconButton,
 } from "@chakra-ui/react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import useAuthContext from "@/app/hooks/useAuthContext";
-import useLogout from "@/app/hooks/useLogout";
 import Link from "next/link";
 import { User } from "@/app/models/User";
 import { signOut } from "next-auth/react";

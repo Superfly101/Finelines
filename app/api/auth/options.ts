@@ -1,5 +1,4 @@
 import { apiUrl } from "@/app/constants";
-import { User } from "@/app/models/User";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -31,7 +30,6 @@ export const options: NextAuthOptions = {
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
-        console.log({ credentials });
         const res = await fetch(`${apiUrl}/users/auth`, {
           method: "POST",
           body: JSON.stringify(credentials),

@@ -1,4 +1,5 @@
-import useAuthContext from "@/app/hooks/useAuthContext";
+import { apiUrl } from "@/app/constants";
+
 import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { DeleteIcon } from "@chakra-ui/icons";
@@ -30,18 +31,16 @@ const FinelineMenu = ({ id, username }: Prop) => {
   const { dispatch } = useFinelinesContext();
   const [isLoading, setIsLoading] = useState(false);
   const { addToast } = useCustomToast();
-  // const { user } = useAuthContext();
   const { data: session } = useSession();
 
   const handleDelete = async () => {
     setIsLoading(true);
-    const response = await fetch(
-      `http://localhost:5000/api/pickup-lines/${id}`,
-      {
-        method: "DELETE",
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${apiUrl}/pickup-lines/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${session?.user.token}`,
+      },
+    });
 
     const result = await response.json();
 
