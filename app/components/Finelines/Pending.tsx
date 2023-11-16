@@ -14,28 +14,12 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
 
   const { data: session } = useSession();
   const { isLoading, error, sendRequest } = useFineline();
+  const [isApprovingFineline, setIsApprovingFineline] = useState(false);
+  const [isRejectingFineline, setIsRejectingFineline] = useState(false);
 
   const updatePickupline = async (action: string) => {
-    // const res = await fetch(`${apiUrl}/pickup-lines/${_id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${session?.user.token}`,
-    //   },
-    //   body: JSON.stringify({ status: action }),
-    // });
-
-    // const data = await res.json();
-
-    // if (!res.ok) {
-    //   console.log("An error occured:", data);
-    //   return;
-    // }
-
-    // console.log(data);
-
     if (session?.user) {
-      sendRequest({
+      await sendRequest({
         url: `pickup-lines/${_id}`,
         method: "PUT",
         headers: {
@@ -44,9 +28,9 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
         },
         body: JSON.stringify({ status: action }),
       });
-
-      console.log("Request sent");
     }
+    setIsApprovingFineline(false);
+    setIsRejectingFineline(false);
   };
 
   const handleReject = async () => {
@@ -62,8 +46,10 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
   const handleAction = () => {
     onClose();
     if (action === "Approve") {
+      setIsApprovingFineline(true);
       updatePickupline("approved");
     } else if (action === "Reject") {
+      setIsRejectingFineline(true);
       updatePickupline("rejected");
     }
   };
@@ -105,9 +91,9 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
                   rightIcon={<CheckIcon />}
                   className="w-full"
                   onClick={handleApprove}
-                  isLoading={isLoading}
-                  isDisabled={isLoading}
-                  loadingText="Submitting..."
+                  isLoading={isApprovingFineline}
+                  isDisabled={isApprovingFineline}
+                  loadingText="Approving..."
                 >
                   Approve
                 </MyButton>
@@ -115,9 +101,9 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
                   color="red"
                   className="w-full"
                   onClick={handleReject}
-                  isLoading={isLoading}
-                  isDisabled={isLoading}
-                  loadingText="Submitting..."
+                  isLoading={isRejectingFineline}
+                  isDisabled={isRejectingFineline}
+                  loadingText="Rejecting..."
                 >
                   Reject
                 </MyButton>

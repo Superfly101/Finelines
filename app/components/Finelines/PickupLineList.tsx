@@ -16,7 +16,7 @@ const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
       {isLoading ? (
         <LoadingSpinner />
       ) : finelines.length ? (
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 w-full">
           {finelines.map((fineline) => (
             <PickupLineItem {...fineline} key={fineline._id} />
           ))}
