@@ -45,7 +45,7 @@ const useFineline = () => {
     []
   );
 
-  return { isLoading, error, finelines, sendRequest };
+  return { isLoading, error, finelines, setFinelines, sendRequest };
 };
 
 export default useFineline;

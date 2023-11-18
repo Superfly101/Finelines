@@ -1,4 +1,6 @@
+import { apiUrl } from "@/app/constants";
 import useCustomToast from "@/app/hooks/useCustomToast";
+import useFineline from "@/app/hooks/useFineline";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { PickupLine } from "@/app/models/pickupLine";
 import { Avatar, Text } from "@chakra-ui/react";
@@ -30,6 +32,7 @@ const PickupLineItem = ({
   const { dispatch } = useFinelinesContext();
   const [isLiked, setIsLiked] = useState(false);
   const { addToast } = useCustomToast();
+  const { isLoading, error, finelines, sendRequest } = useFineline();
 
   useEffect(() => {
     if (session?.user) {
@@ -45,23 +48,27 @@ const PickupLineItem = ({
       return;
     }
     setIsLiked((prev) => !prev);
-    const response = await fetch(
-      `http://localhost:5000/api/pickup-lines/${_id}/like`,
-      {
-        method: "PATCH",
-        credentials: "include",
-      }
-    );
+    // const response = await fetch(`${apiUrl}/pickup-lines/${_id}/like`, {
+    //   method: "PATCH",
+    // });
+    sendRequest({
+      url: `${apiUrl}/pickup-lines/${_id}/like`,
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.user.token}`,
+      },
+    });
 
-    const result = await response.json();
-
-    if (!response.ok) {
-      console.log(result);
+    if (error) {
+      console.log(error);
       setIsLiked(false);
       return;
     }
 
-    dispatch({ type: "LIKE_FINELINE", payload: result });
+    console.log(finelines);
+
+    dispatch({ type: "LIKE_FINELINE", payload: finelines[0] });
   };
   const handleShare = () => {};
 

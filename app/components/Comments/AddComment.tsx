@@ -1,3 +1,4 @@
+import { apiUrl } from "@/app/constants";
 import useCustomToast from "@/app/hooks/useCustomToast";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
 import { Comment } from "@/app/models/Comment";
@@ -23,16 +24,13 @@ const AddComment = ({ id, addComment }: Prop) => {
     //   return;
     // }
 
-    const response = await fetch(
-      `http://localhost:5000/api/pickup-lines/${id}/comments`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ comment }),
-      }
-    );
+    const response = await fetch(`${apiUrl}/pickup-lines/${id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comment }),
+    });
 
     const result = await response.json();
 

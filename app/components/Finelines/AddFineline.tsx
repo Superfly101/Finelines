@@ -63,32 +63,40 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
     }
 
     setIsLoading(true);
+    try {
+      const response = await fetch(`${apiUrl}/pickup-lines/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.user.token}`,
+        },
+        body: JSON.stringify({ text: fineline, tags }),
+      });
 
-    const response = await fetch(`${apiUrl}/pickup-lines/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session?.user.token}`,
-      },
-      body: JSON.stringify({ text: fineline, tags }),
-    });
+      const data = await response.json();
 
-    const data = await response.json();
+      if (!response.ok) {
+        setIsLoading(false);
+        console.log(data.message);
+        return;
+      }
 
-    if (!response.ok) {
       setIsLoading(false);
-      console.log(data.message);
-      return;
+      onClose();
+      addToast({
+        title: "Your pickup line has been submitted for review.",
+        position: "top",
+        href: `/finelines/${data._id}`,
+      });
+    } catch (error) {
+      addToast({
+        status: "error",
+        title: "An error occured, please try again later",
+        position: "bottom-left",
+      });
+      setIsLoading(false);
+      console.log(error);
     }
-
-    setIsLoading(false);
-    onClose();
-    dispatch({ type: "ADD_FINELINE", payload: data });
-    addToast({
-      title: "Your pickup line has been submitted for review.",
-      position: "top",
-      href: `/finelines/${data._id}`,
-    });
   };
 
   return (

@@ -4,16 +4,21 @@ import { PickupLine } from "@/app/models/pickupLine";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import MyButton from "../ui/Button";
 import CustomModal from "../ui/CustomModal";
 
-const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
+type Props = PickupLine & {
+  updateFinelines: Dispatch<SetStateAction<PickupLine[] | null>>;
+};
+
+const Pending = ({ _id, user, text, tags, status, updateFinelines }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [action, setAction] = useState<string | null>(null);
 
   const { data: session } = useSession();
-  const { isLoading, error, sendRequest } = useFineline();
+  const { isLoading, error, finelines, setFinelines, sendRequest } =
+    useFineline();
   const [isApprovingFineline, setIsApprovingFineline] = useState(false);
   const [isRejectingFineline, setIsRejectingFineline] = useState(false);
 
@@ -31,6 +36,11 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
     }
     setIsApprovingFineline(false);
     setIsRejectingFineline(false);
+    updateFinelines((current) =>
+      current
+        ? current.filter((fineline) => fineline._id !== finelines[0]._id)
+        : null
+    );
   };
 
   const handleReject = async () => {
@@ -91,8 +101,8 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
                   rightIcon={<CheckIcon />}
                   className="w-full"
                   onClick={handleApprove}
-                  isLoading={isApprovingFineline}
-                  isDisabled={isApprovingFineline}
+                  isLoading={isLoading && isApprovingFineline}
+                  isDisabled={isLoading && isApprovingFineline}
                   loadingText="Approving..."
                 >
                   Approve
@@ -101,8 +111,8 @@ const Pending = ({ _id, user, text, tags, status }: PickupLine) => {
                   color="red"
                   className="w-full"
                   onClick={handleReject}
-                  isLoading={isRejectingFineline}
-                  isDisabled={isRejectingFineline}
+                  isLoading={isLoading && isRejectingFineline}
+                  isDisabled={isLoading && isRejectingFineline}
                   loadingText="Rejecting..."
                 >
                   Reject

@@ -3,15 +3,19 @@
 import { Text } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Pending from "../components/Finelines/Pending";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import useFineline from "../hooks/useFineline";
+import { PickupLine } from "../models/pickupLine";
 
 const Page = () => {
   const { data: session } = useSession();
 
   const { finelines, isLoading, sendRequest: fetchFinelines } = useFineline();
+  const [pendingFinelines, setPendingFinelines] = useState<PickupLine[] | null>(
+    null
+  );
 
   useEffect(() => {
     if (session?.user.role === "user") {
@@ -23,6 +27,8 @@ const Page = () => {
         url: `pickup-lines?status=pending`,
       });
     }
+
+    setPendingFinelines([...finelines]);
   }, [session?.user, fetchFinelines]);
 
   return (
@@ -31,9 +37,13 @@ const Page = () => {
         <LoadingSpinner />
       ) : (
         <ul className="flex flex-col gap-4">
-          {finelines.length ? (
-            finelines.map((fineline) => (
-              <Pending key={fineline._id} {...fineline} />
+          {pendingFinelines?.length ? (
+            pendingFinelines.map((fineline) => (
+              <Pending
+                key={fineline._id}
+                {...fineline}
+                updateFinelines={setPendingFinelines}
+              />
             ))
           ) : (
             <div className="flex flex-col gap-4 justify-center items-center h-96">
