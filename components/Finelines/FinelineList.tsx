@@ -7,7 +7,7 @@ import { PickupLine } from "@/types/pickupLine";
 import Fineline from "./Fineline";
 import { Heading } from "@chakra-ui/react";
 
-const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
+const FinelineList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   const { isLoading, sendRequest: fetchFinelines } = useFineline();
   const { finelines, dispatch } = useFinelinesContext();
 
@@ -52,4 +52,4 @@ const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   );
 };
 
-export default PickupLinesList;
+export default FinelineList;

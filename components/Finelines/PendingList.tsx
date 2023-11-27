@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pending from "./Pending";
 import LoadingSpinner from "../ui/LoadingSpinner";
-import useCustomToast from "@/hooks/useCustomToast";
 import useFineline from "@/hooks/useFineline";
 import { PickupLine } from "@/types/pickupLine";
 
