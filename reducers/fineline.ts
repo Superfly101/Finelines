@@ -1,4 +1,4 @@
-import { PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/types/pickupLine";
 
 type initialStateType = {
   finelines: PickupLine[];

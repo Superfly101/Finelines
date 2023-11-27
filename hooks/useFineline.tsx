@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiUrl } from "../constants";
-import { PickupLine } from "../models/pickupLine";
+import { PickupLine } from "../types/pickupLine";
 import useCustomToast from "./useCustomToast";
 
 type Config = {

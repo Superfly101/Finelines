@@ -3,7 +3,7 @@ import useFineline from "@/hooks/useFineline";
 import MyButton from "../ui/Button";
 import { useEffect } from "react";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
-import { PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/types/pickupLine";
 import Fineline from "./Fineline";
 import { Heading } from "@chakra-ui/react";
 

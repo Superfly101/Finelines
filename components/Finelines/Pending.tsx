@@ -1,6 +1,6 @@
 import { apiUrl } from "@/constants";
 import useFineline from "@/hooks/useFineline";
-import { PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/types/pickupLine";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";

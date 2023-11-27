@@ -1,6 +1,6 @@
 "use client";
 
-import { PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/types/pickupLine";
 import FinelinesReducer, {
   FinelineActionType,
   initialState,

@@ -1,8 +1,8 @@
 import { apiUrl } from "@/constants";
 import useCustomToast from "@/hooks/useCustomToast";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
-import { Comment } from "@/models/Comment";
-import { PickupLine } from "@/models/pickupLine";
+import { Comment } from "@/types/Comment";
+import { PickupLine } from "@/types/pickupLine";
 import { Avatar, Input } from "@chakra-ui/react";
 import { useState } from "react";
 

@@ -1,7 +1,7 @@
 import useCustomToast from "@/hooks/useCustomToast";
 import useFineline from "@/hooks/useFineline";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
-import { PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/types/pickupLine";
 import { Avatar, Text } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";

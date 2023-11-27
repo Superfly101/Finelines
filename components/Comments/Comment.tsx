@@ -1,4 +1,4 @@
-import { Comment } from "@/models/Comment";
+import { Comment } from "@/types/Comment";
 import { Avatar, Text } from "@chakra-ui/react";
 
 type Prop = Comment;

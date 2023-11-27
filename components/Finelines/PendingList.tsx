@@ -8,7 +8,7 @@ import Pending from "./Pending";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import useCustomToast from "@/hooks/useCustomToast";
 import useFineline from "@/hooks/useFineline";
-import { PickupLine } from "@/models/pickupLine";
+import { PickupLine } from "@/types/pickupLine";
 
 const PendingList = () => {
   const { data: session } = useSession();
