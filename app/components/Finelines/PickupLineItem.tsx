@@ -1,4 +1,3 @@
-import { apiUrl } from "@/app/constants";
 import useCustomToast from "@/app/hooks/useCustomToast";
 import useFineline from "@/app/hooks/useFineline";
 import useFinelinesContext from "@/app/hooks/useFinelinesContext";
@@ -48,11 +47,9 @@ const PickupLineItem = ({
       return;
     }
     setIsLiked((prev) => !prev);
-    // const response = await fetch(`${apiUrl}/pickup-lines/${_id}/like`, {
-    //   method: "PATCH",
-    // });
-    sendRequest({
-      url: `${apiUrl}/pickup-lines/${_id}/like`,
+
+    const data: PickupLine = await sendRequest({
+      url: `pickup-lines/${_id}/like`,
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -66,9 +63,7 @@ const PickupLineItem = ({
       return;
     }
 
-    console.log(finelines);
-
-    dispatch({ type: "LIKE_FINELINE", payload: finelines[0] });
+    dispatch({ type: "LIKE_FINELINE", payload: data });
   };
   const handleShare = () => {};
 

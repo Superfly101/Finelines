@@ -44,6 +44,7 @@ const useFineline = () => {
 
         setFinelines(data);
         setIsLoading(false);
+        return data;
       } catch (err) {
         console.log(err);
         addToast({

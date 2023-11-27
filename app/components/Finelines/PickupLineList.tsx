@@ -3,12 +3,22 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/app/hooks/useFineline";
 import MyButton from "../ui/Button";
 import { useEffect } from "react";
+import useFinelinesContext from "@/app/hooks/useFinelinesContext";
+import { PickupLine } from "@/app/models/pickupLine";
 
 const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
-  const { isLoading, finelines, sendRequest: fetchFinelines } = useFineline();
+  const { isLoading, sendRequest: fetchFinelines } = useFineline();
+  const { finelines, dispatch } = useFinelinesContext();
 
   useEffect(() => {
-    fetchFinelines({ url: "pickup-lines?status=approved" });
+    const fetchData = async () => {
+      const data: PickupLine[] = await fetchFinelines({
+        url: "pickup-lines?status=approved",
+      });
+      dispatch({ type: "GET_FINELINES", payload: data });
+    };
+
+    fetchData();
   }, [fetchFinelines]);
 
   return (
