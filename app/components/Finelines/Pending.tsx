@@ -37,9 +37,7 @@ const Pending = ({ _id, user, text, tags, status, updateFinelines }: Props) => {
     setIsApprovingFineline(false);
     setIsRejectingFineline(false);
     updateFinelines((current) =>
-      current
-        ? current.filter((fineline) => fineline._id !== finelines[0]._id)
-        : null
+      current ? current.filter((fineline) => fineline._id !== _id) : null
     );
   };
 

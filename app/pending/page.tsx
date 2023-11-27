@@ -6,34 +6,45 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pending from "../components/Finelines/Pending";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
+import useCustomToast from "../hooks/useCustomToast";
 import useFineline from "../hooks/useFineline";
 import { PickupLine } from "../models/pickupLine";
 
 const Page = () => {
   const { data: session } = useSession();
-
-  const { finelines, isLoading, sendRequest: fetchFinelines } = useFineline();
+  const {
+    finelines,
+    isLoading,
+    error,
+    sendRequest: fetchFinelines,
+  } = useFineline();
   const [pendingFinelines, setPendingFinelines] = useState<PickupLine[] | null>(
     null
   );
 
   useEffect(() => {
-    if (session?.user.role === "user") {
-      fetchFinelines({
-        url: `pickup-lines?status=pending&user=${session?.user.username}`,
-      });
-    } else if (session?.user.role === "admin") {
-      fetchFinelines({
-        url: `pickup-lines?status=pending`,
-      });
+    try {
+      if (session?.user.role === "user") {
+        fetchFinelines({
+          url: `pickup-lines?status=pending&user=${session?.user.username}`,
+        });
+      } else if (session?.user.role === "admin") {
+        fetchFinelines({
+          url: `pickup-lines?status=pending`,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    setPendingFinelines([...finelines]);
   }, [session?.user, fetchFinelines]);
+
+  useEffect(() => {
+    setPendingFinelines(finelines);
+  }, [finelines]);
 
   return (
     <section className="px-4 py-8">
-      {isLoading || isLoading === null ? (
+      {isLoading || isLoading === undefined ? (
         <LoadingSpinner />
       ) : (
         <ul className="flex flex-col gap-4">
