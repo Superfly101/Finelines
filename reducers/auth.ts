@@ -1,4 +1,4 @@
-import { User } from "@/app/models/User";
+import { User } from "@/models/User";
 
 export type AuthActionType =
   | { type: "LOGIN"; payload: User }

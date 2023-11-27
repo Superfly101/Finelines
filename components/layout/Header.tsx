@@ -3,7 +3,7 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
-import { User } from "@/app/models/User";
+import { User } from "@/models/User";
 import { Heading, IconButton, useColorMode } from "@chakra-ui/react";
 import { signIn, useSession } from "next-auth/react";
 

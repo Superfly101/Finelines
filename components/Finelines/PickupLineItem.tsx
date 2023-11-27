@@ -1,7 +1,7 @@
-import useCustomToast from "@/app/hooks/useCustomToast";
-import useFineline from "@/app/hooks/useFineline";
-import useFinelinesContext from "@/app/hooks/useFinelinesContext";
-import { PickupLine } from "@/app/models/pickupLine";
+import useCustomToast from "@/hooks/useCustomToast";
+import useFineline from "@/hooks/useFineline";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
+import { PickupLine } from "@/models/pickupLine";
 import { Avatar, Text } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ const PickupLineItem = ({
   const { dispatch } = useFinelinesContext();
   const [isLiked, setIsLiked] = useState(false);
   const { addToast } = useCustomToast();
-  const { isLoading, error, finelines, sendRequest } = useFineline();
+  const { error, finelines, sendRequest } = useFineline();
 
   useEffect(() => {
     if (session?.user) {

@@ -1,4 +1,4 @@
-import { NAV_ITEMS } from "@/app/constants/NavItems";
+import { NAV_ITEMS } from "@/constants/NavItems";
 import {
   Drawer,
   DrawerBody,

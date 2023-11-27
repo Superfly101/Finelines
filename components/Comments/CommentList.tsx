@@ -1,4 +1,4 @@
-import { Comment } from "@/app/models/Comment";
+import { Comment } from "@/models/Comment";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import AddComment from "./AddComment";

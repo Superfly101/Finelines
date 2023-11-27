@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { User } from "@/app/models/User";
+import { User } from "@/models/User";
 import { signOut } from "next-auth/react";
 const UserMenu = ({ user }: { user: User | undefined }) => {
   // const { logout } = useLogout();

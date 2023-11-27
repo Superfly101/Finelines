@@ -1,10 +1,10 @@
 import PickupLineItem from "./PickupLineItem";
 import LoadingSpinner from "../ui/LoadingSpinner";
-import useFineline from "@/app/hooks/useFineline";
+import useFineline from "@/hooks/useFineline";
 import MyButton from "../ui/Button";
 import { useEffect } from "react";
-import useFinelinesContext from "@/app/hooks/useFinelinesContext";
-import { PickupLine } from "@/app/models/pickupLine";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
+import { PickupLine } from "@/models/pickupLine";
 
 const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   const { isLoading, sendRequest: fetchFinelines } = useFineline();
@@ -19,7 +19,7 @@ const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
     };
 
     fetchData();
-  }, [fetchFinelines]);
+  }, [fetchFinelines, dispatch]);
 
   return (
     <section className="flex justify-center items-center p-8 border-t-2 min-h-[50vh]">

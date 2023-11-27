@@ -1,11 +1,7 @@
 "use client";
 
-import { User } from "@/app/models/User";
-import {
-  AuthActionType,
-  authInitialState,
-  authReducer,
-} from "@/app/reducers/auth";
+import { User } from "@/models/User";
+import { AuthActionType, authInitialState, authReducer } from "@/reducers/auth";
 import { createContext, Dispatch, useEffect, useReducer } from "react";
 import { apiUrl } from "../constants";
 

@@ -1,7 +1,7 @@
-import { apiUrl } from "@/app/constants";
+import { apiUrl } from "@/constants";
 
-import useCustomToast from "@/app/hooks/useCustomToast";
-import useFinelinesContext from "@/app/hooks/useFinelinesContext";
+import useCustomToast from "@/hooks/useCustomToast";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { DeleteIcon } from "@chakra-ui/icons";
 import {
   Menu,

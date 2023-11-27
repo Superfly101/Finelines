@@ -1,10 +1,10 @@
 "use client";
 
-import { PickupLine } from "@/app/models/pickupLine";
+import { PickupLine } from "@/models/pickupLine";
 import FinelinesReducer, {
   FinelineActionType,
   initialState,
-} from "@/app/reducers/fineline";
+} from "@/reducers/fineline";
 import React, { Dispatch, useReducer } from "react";
 
 type CtxProp = {

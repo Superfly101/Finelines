@@ -1,5 +1,5 @@
-import useCustomToast from "@/app/hooks/useCustomToast";
-import useFinelinesContext from "@/app/hooks/useFinelinesContext";
+import useCustomToast from "@/hooks/useCustomToast";
+import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import MyButton from "../ui/Button";
 import {
@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import IconButton from "../ui/IconButton";
-import { apiUrl } from "@/app/constants";
+import { apiUrl } from "@/constants";
 import { useSession } from "next-auth/react";
 
 type Prop = {

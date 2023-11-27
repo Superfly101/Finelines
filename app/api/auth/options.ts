@@ -1,4 +1,4 @@
-import { apiUrl } from "@/app/constants";
+import { apiUrl } from "@/constants";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
