@@ -5,10 +5,10 @@ import IconButton from "./ui/IconButton";
 import { AddIcon } from "@chakra-ui/icons";
 import useCustomToast from "../hooks/useCustomToast";
 import HeroSection from "./HeroSection";
-import PickupLinesList from "./finelines/FinelineList";
-import AddFineline from "./finelines/AddFineline";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import FinelineList from "./finelines/FinelineList";
+import AddFineline from "./finelines/AddFineline";
 
 export default function HomeView() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,7 +48,7 @@ export default function HomeView() {
   return (
     <>
       <HeroSection onAddFineline={handleClick} />
-      <PickupLinesList onAddFineline={handleClick} />
+      <FinelineList onAddFineline={handleClick} />
       <IconButton
         onClick={handleClick}
         aria-label="Add your own pickup line"
