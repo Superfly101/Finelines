@@ -1,10 +1,11 @@
-import PickupLineItem from "./PickupLineItem";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/hooks/useFineline";
 import MyButton from "../ui/Button";
 import { useEffect } from "react";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { PickupLine } from "@/models/pickupLine";
+import Fineline from "./Fineline";
+import { Heading } from "@chakra-ui/react";
 
 const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   const { isLoading, sendRequest: fetchFinelines } = useFineline();
@@ -22,13 +23,17 @@ const PickupLinesList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   }, [fetchFinelines, dispatch]);
 
   return (
-    <section className="flex justify-center items-center p-8 border-t-2 min-h-[50vh]">
+    <section
+      id="finelines"
+      className="flex flex-col gap-8 justify-center items-center px-8 py-16 border-t-2 min-h-[50vh]"
+    >
+      <Heading className="mb-8">Some Finelines</Heading>
       {isLoading ? (
         <LoadingSpinner />
       ) : finelines.length ? (
         <ul className="flex flex-col gap-2 w-full">
           {finelines.map((fineline) => (
-            <PickupLineItem {...fineline} key={fineline._id} />
+            <Fineline {...fineline} key={fineline._id} />
           ))}
         </ul>
       ) : (

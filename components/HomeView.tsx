@@ -5,9 +5,10 @@ import IconButton from "./ui/IconButton";
 import { AddIcon } from "@chakra-ui/icons";
 import useCustomToast from "../hooks/useCustomToast";
 import HeroSection from "./HeroSection";
-import PickupLinesList from "./Finelines/PickupLineList";
-import AddFineline from "./Finelines/AddFineline";
+import PickupLinesList from "./finelines/FinelineList";
+import AddFineline from "./finelines/AddFineline";
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 export default function HomeView() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,6 +28,23 @@ export default function HomeView() {
     onOpen();
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const shouldBeVisible = scrollPosition > 200;
+
+      setIsVisible(shouldBeVisible);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <HeroSection onAddFineline={handleClick} />
@@ -34,7 +52,9 @@ export default function HomeView() {
       <IconButton
         onClick={handleClick}
         aria-label="Add your own pickup line"
-        className="fixed bottom-8 right-8 rounded-full w-12 h-12 z-10 bg-blue"
+        className={`${
+          isVisible ? null : "hidden"
+        } fixed bottom-8 right-8 rounded-full w-12 h-12 z-10 bg-blue`}
         icon={<AddIcon />}
       />
 

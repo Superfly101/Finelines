@@ -1,5 +1,4 @@
 import useCustomToast from "@/hooks/useCustomToast";
-import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import MyButton from "../ui/Button";
 import {
@@ -34,7 +33,6 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
 
   const { data: session } = useSession();
 
-  const { dispatch } = useFinelinesContext();
   const { addToast } = useCustomToast();
   const tagIsvalid = tagValue !== "" && tags.length < 5;
 

@@ -5,7 +5,7 @@ import { PickupLine } from "@/models/pickupLine";
 import { Avatar, Text } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import CommentSection from "../Comments/CommentSection";
+import CommentSection from "../comments/CommentSection";
 import CommentIcon from "../icons/CommentIcon";
 import LikeIcon from "../icons/LikeIcon";
 import ShareIcon from "../icons/ShareIcon";
