@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import FinelineList from "./finelines/FinelineList";
 import AddFineline from "./finelines/AddFineline";
 
-export default function HomeView() {
+const HomeView = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data: session } = useSession();
 
@@ -61,4 +61,6 @@ export default function HomeView() {
       <AddFineline isOpen={isOpen} onClose={onClose} />
     </>
   );
-}
+};
+
+export default HomeView;
