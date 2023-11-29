@@ -7,8 +7,8 @@ import useCustomToast from "../hooks/useCustomToast";
 import HeroSection from "./HeroSection";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import FinelineList from "./finelines/FinelineList";
-import AddFineline from "./finelines/AddFineline";
+import FinelineList from "./Finelines/FinelineList";
+import AddFineline from "./Finelines/AddFineline";
 
 const HomeView = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
