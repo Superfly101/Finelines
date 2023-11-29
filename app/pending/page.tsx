@@ -1,4 +1,4 @@
-import PendingList from "@/component/finelines/PendingList";
+import PendingList from "@/components/finelines/PendingList";
 
 const Page = () => {
   return <PendingList />;
