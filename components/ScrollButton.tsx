@@ -7,7 +7,7 @@ const ScrollButton = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const shouldBeVisible = scrollPosition < 100;
+      const shouldBeVisible = scrollPosition < 80;
 
       setIsVisible(shouldBeVisible);
     };
@@ -24,7 +24,7 @@ const ScrollButton = () => {
       href="#finelines"
       className={`${
         isVisible ? null : "hidden"
-      } fixed bottom-8 right-0.5 left-0.5 animate-bounce p-3 border-2 border-violet-500 w-fit rounded-full mx-auto cursor-pointer`}
+      } fixed bottom-8 right-8 animate-bounce p-3 border-2 border-violet-500 w-fit rounded-full mx-auto cursor-pointer`}
     >
       <svg
         className="w-6 h-6 text-violet-500"
