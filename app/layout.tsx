@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import { Metadata } from "next";
 import { Providers } from "./providers";
-import Header from "@/components/layout/Header";
+import Header from "@/component/layout/Header";
 import { ColorModeScript } from "@chakra-ui/react";
 import theme from "@/theme";
 

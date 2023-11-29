@@ -1,4 +1,4 @@
-import HomeView from "@/components/HomeView";
+import HomeView from "@/component/HomeView";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
