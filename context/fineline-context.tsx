@@ -1,6 +1,6 @@
 "use client";
 
-import { PickupLine } from "@/types/pickupLine";
+import { Fineline, FinelinesResponse } from "@/types/Fineline";
 import FinelinesReducer, {
   FinelineActionType,
   initialState,
@@ -12,9 +12,8 @@ type CtxProp = {
 };
 
 type FinelineContextType = {
-  finelines: PickupLine[];
   dispatch: Dispatch<FinelineActionType>;
-};
+} & FinelinesResponse;
 
 export const FinelineContext = React.createContext<FinelineContextType | null>(
   null
