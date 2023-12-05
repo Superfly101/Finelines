@@ -1,26 +1,32 @@
 import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/hooks/useFineline";
 import MyButton from "../ui/Button";
-import { useEffect } from "react";
+import { useCallback, useRef, useState } from "react";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
-import { PickupLine } from "@/types/pickupLine";
-import Fineline from "./Fineline";
 import { Heading } from "@chakra-ui/react";
+import FinelineItem from "./FinelineItem";
+import { Fineline, FinelinesResponse } from "@/types/Fineline";
 
 const FinelineList = ({ onAddFineline }: { onAddFineline: () => void }) => {
-  const { isLoading, sendRequest: fetchFinelines } = useFineline();
-  const { finelines, dispatch } = useFinelinesContext();
+  const [page, setPage] = useState(1);
+  const { isLoading, finelines, hasNextPage } = useFineline(page);
+  const observer = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data: PickupLine[] = await fetchFinelines({
-        url: "pickup-lines?status=approved",
+  const lastFinelineRef = useCallback(
+    (node: HTMLLIElement) => {
+      if (isLoading) return;
+
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          setPage((prevPage) => prevPage + 1);
+        }
       });
-      dispatch({ type: "GET_FINELINES", payload: data });
-    };
 
-    fetchData();
-  }, [fetchFinelines, dispatch]);
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasNextPage]
+  );
 
   return (
     <section
@@ -28,13 +34,23 @@ const FinelineList = ({ onAddFineline }: { onAddFineline: () => void }) => {
       className="flex flex-col gap-8 justify-center items-center px-8 py-16 border-t-2 min-h-[50vh]"
     >
       <Heading className="mb-8">Some Finelines</Heading>
-      {isLoading ? (
+      {isLoading && finelines.length === 0 ? (
         <LoadingSpinner />
       ) : finelines.length ? (
         <ul className="flex flex-col gap-2 w-full">
-          {finelines.map((fineline) => (
-            <Fineline {...fineline} key={fineline._id} />
-          ))}
+          {finelines.map((fineline, index) => {
+            if (finelines.length === index + 1) {
+              return (
+                <FinelineItem
+                  ref={lastFinelineRef}
+                  key={fineline._id}
+                  {...fineline}
+                />
+              );
+            }
+
+            return <FinelineItem key={fineline._id} {...fineline} />;
+          })}
         </ul>
       ) : (
         <div className="flex flex-col gap-4 p-4 text-center">
