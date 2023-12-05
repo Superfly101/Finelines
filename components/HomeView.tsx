@@ -33,7 +33,7 @@ const HomeView = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const shouldBeVisible = scrollPosition > 200;
+      const shouldBeVisible = scrollPosition > 150;
 
       setIsVisible(shouldBeVisible);
     };
