@@ -13,10 +13,6 @@ export const initialState: FinelinesResponse = {
   nextPage: null,
 };
 
-// type InitialState = {
-//   finelines: Fineline[];
-// };
-
 export type FinelineActionType =
   | { type: "GET_FINELINES"; payload: FinelinesResponse }
   | { type: "ADD_FINELINE"; payload: Fineline }
