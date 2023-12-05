@@ -10,7 +10,7 @@ type Config = {
   body?: BodyInit;
 };
 
-const useFineline = (page: number, status: String = "approved") => {
+const useFineline = (page: number = 1, status: String = "approved") => {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<string | null>(null);
   const [finelines, setFinelines] = useState<Fineline[]>([]);
