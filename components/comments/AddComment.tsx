@@ -2,7 +2,7 @@ import { apiUrl } from "@/constants";
 import useCustomToast from "@/hooks/useCustomToast";
 import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { Comment } from "@/types/Comment";
-import { PickupLine } from "@/types/pickupLine";
+import { Fineline } from "@/types/Fineline";
 import { Avatar, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -42,7 +42,7 @@ const AddComment = ({ id, addComment }: Prop) => {
 
     setComment("");
     addComment(result);
-    const newLine: PickupLine | undefined = finelines.find(
+    const newLine: Fineline | undefined = finelines.find(
       (fineline) => fineline._id === id
     );
     if (newLine) {

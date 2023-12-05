@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Pending from "./Pending";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/hooks/useFineline";
-import { PickupLine } from "@/types/pickupLine";
+import { Fineline } from "@/types/Fineline";
 
 const PendingList = () => {
   const { data: session } = useSession();
@@ -17,7 +17,7 @@ const PendingList = () => {
     error,
     sendRequest: fetchFinelines,
   } = useFineline();
-  const [pendingFinelines, setPendingFinelines] = useState<PickupLine[] | null>(
+  const [pendingFinelines, setPendingFinelines] = useState<Fineline[] | null>(
     null
   );
 

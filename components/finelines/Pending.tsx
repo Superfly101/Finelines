@@ -1,6 +1,6 @@
 import { apiUrl } from "@/constants";
 import useFineline from "@/hooks/useFineline";
-import { PickupLine } from "@/types/pickupLine";
+import { Fineline } from "@/types/Fineline";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Avatar, Text, useDisclosure } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
@@ -8,8 +8,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 import MyButton from "../ui/Button";
 import CustomModal from "../ui/CustomModal";
 
-type Props = PickupLine & {
-  updateFinelines: Dispatch<SetStateAction<PickupLine[] | null>>;
+type Props = Fineline & {
+  updateFinelines: Dispatch<SetStateAction<Fineline[] | null>>;
 };
 
 const Pending = ({ _id, user, text, tags, status, updateFinelines }: Props) => {
