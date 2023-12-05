@@ -4,67 +4,60 @@ import { Fineline } from "../types/Fineline";
 import useCustomToast from "./useCustomToast";
 
 type Config = {
-  status?: string;
   url?: string;
   method?: "POST" | "GET" | "PUT" | "DELETE" | "PATCH";
   headers?: HeadersInit;
   body?: BodyInit;
 };
 
-const useFineline = ({
-  status = "approved",
-  method = "GET",
-  headers,
-  body,
-}: Config) => {
+const useFineline = (page: number, status: String = "approved") => {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<string | null>(null);
   const [finelines, setFinelines] = useState<Fineline[]>([]);
-  const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
   const { addToast } = useCustomToast();
 
-  const sendRequest = useCallback(
-    async ({ url, method = "GET", headers, body }: Config) => {
-      try {
-        setError(null);
-        setIsLoading(true);
+  // const sendRequest = useCallback(
+  //   async ({ url, method = "GET", headers, body }: Config) => {
+  //     try {
+  //       setError(null);
+  //       setIsLoading(true);
 
-        const res = await fetch(`${apiUrl}/${url}`, {
-          method: method,
-          headers: headers ? headers : {},
-          body: body ? body : null,
-        });
+  //       const res = await fetch(`${apiUrl}/${url}`, {
+  //         method: method,
+  //         headers: headers ? headers : {},
+  //         body: body ? body : null,
+  //       });
 
-        const data = await res.json();
+  //       const data = await res.json();
 
-        if (!res.ok) {
-          console.log(data);
-          setError(data.message);
-          setIsLoading(false);
-          addToast({
-            status: "error",
-            title: "An error occured, please try again later.",
-            position: "bottom-left",
-          });
-          return;
-        }
+  //       if (!res.ok) {
+  //         console.log(data);
+  //         setError(data.message);
+  //         setIsLoading(false);
+  //         addToast({
+  //           status: "error",
+  //           title: "An error occured, please try again later.",
+  //           position: "bottom-left",
+  //         });
+  //         return;
+  //       }
 
-        setFinelines(data.finelines);
-        setIsLoading(false);
-        return data;
-      } catch (err) {
-        console.log(err);
-        addToast({
-          status: "error",
-          title: "An error occured, please try again later.",
-          position: "bottom-left",
-        });
-        setIsLoading(false);
-      }
-    },
-    []
-  );
+  //       setFinelines(data.finelines);
+  //       setIsLoading(false);
+  //       return data;
+  //     } catch (err) {
+  //       console.log(err);
+  //       addToast({
+  //         status: "error",
+  //         title: "An error occured, please try again later.",
+  //         position: "bottom-left",
+  //       });
+  //       setIsLoading(false);
+  //     }
+  //   },
+  //   []
+  // );
 
   useEffect(() => {
     const getFinelines = async (signal: AbortSignal) => {
@@ -75,9 +68,6 @@ const useFineline = ({
         const res = await fetch(
           `${apiUrl}/pickup-lines?status=${status}&page=${page}`,
           {
-            method: method,
-            headers: headers ? headers : {},
-            body: body ? body : null,
             signal: signal,
           }
         );
@@ -100,8 +90,7 @@ const useFineline = ({
         setIsLoading(false);
         setHasNextPage(data.hasNextPage);
       } catch (err) {
-        if ((err as Error).name === "AbortError") return;
-        console.log(err);
+        if (signal.aborted) return;
         addToast({
           status: "error",
           title: "An error occured, please try again later.",
@@ -117,9 +106,9 @@ const useFineline = ({
     getFinelines(signal);
 
     return () => controller.abort();
-  }, []);
+  }, [page]);
 
-  return { isLoading, error, finelines, setFinelines, sendRequest };
+  return { isLoading, error, finelines, hasNextPage };
 };
 
 export default useFineline;
