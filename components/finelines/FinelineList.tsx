@@ -2,10 +2,8 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 import useFineline from "@/hooks/useFineline";
 import MyButton from "../ui/Button";
 import { useCallback, useRef, useState } from "react";
-import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { Heading } from "@chakra-ui/react";
 import FinelineItem from "./FinelineItem";
-import { Fineline, FinelinesResponse } from "@/types/Fineline";
 
 const FinelineList = ({ onAddFineline }: { onAddFineline: () => void }) => {
   const [page, setPage] = useState(1);
