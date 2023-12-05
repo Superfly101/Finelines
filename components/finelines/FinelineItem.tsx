@@ -122,4 +122,6 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
   }
 );
 
+FinelineItem.displayName = "FinelineItem";
+
 export default FinelineItem;
