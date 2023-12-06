@@ -4,6 +4,7 @@ import useFinelinesContext from "@/hooks/useFinelinesContext";
 import { Comment } from "@/types/Comment";
 import { Fineline } from "@/types/Fineline";
 import { Avatar, Input } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 type Prop = { id: string; addComment: (comment: Comment) => void };
@@ -13,21 +14,23 @@ const AddComment = ({ id, addComment }: Prop) => {
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch, finelines } = useFinelinesContext();
   const { addToast } = useCustomToast();
+  const { data: session } = useSession();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     setIsLoading(true);
 
-    // if (!user) {
-    //   addToast({ status: "error" });
-    //   return;
-    // }
+    if (!session) {
+      addToast({ status: "error" });
+      return;
+    }
 
     const response = await fetch(`${apiUrl}/pickup-lines/${id}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session.user.token}`,
       },
       body: JSON.stringify({ comment }),
     });
@@ -36,19 +39,19 @@ const AddComment = ({ id, addComment }: Prop) => {
 
     if (!response.ok) {
       setIsLoading(false);
-      console.log(result.message);
+      addToast({ status: "error", title: result.message });
       return;
     }
 
     setComment("");
     addComment(result);
-    const newLine: Fineline | undefined = finelines.find(
-      (fineline) => fineline._id === id
-    );
-    if (newLine) {
-      newLine.comments.push(result._id);
-      dispatch({ type: "COMMENT_FINELNE", payload: newLine });
-    }
+    // const newLine: Fineline | undefined = finelines.find(
+    //   (fineline) => fineline._id === id
+    // );
+    // if (newLine) {
+    //   newLine.comments.push(result._id);
+    //   dispatch({ type: "COMMENT_FINELNE", payload: newLine });
+    // }
     setIsLoading(false);
   };
 
@@ -62,6 +65,7 @@ const AddComment = ({ id, addComment }: Prop) => {
           value={comment}
           autoFocus
           onChange={(e) => setComment(e.target.value)}
+          isDisabled={isLoading}
         />
       </form>
     </div>

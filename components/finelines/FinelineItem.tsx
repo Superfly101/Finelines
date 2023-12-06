@@ -5,7 +5,7 @@ import { Avatar, Text } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import React from "react";
 import { useEffect, useState } from "react";
-import CommentSection from "../comments/CommentSection";
+import CommentList from "../comments/CommentList";
 import CommentIcon from "../icons/CommentIcon";
 import LikeIcon from "../icons/LikeIcon";
 import ShareIcon from "../icons/ShareIcon";
@@ -23,6 +23,7 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
 
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(likes);
+    const [commentCount, setCommentCount] = useState(comments);
     const { addToast } = useCustomToast();
 
     useEffect(() => {
@@ -91,10 +92,10 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
                 ? `1 like`
                 : "Be the first to like"}
             </Text>
-            {comments.length !== 0 && (
+            {commentCount.length !== 0 && (
               <Text>
-                {comments.length}{" "}
-                {comments.length === 1 ? "comment" : "comments"}
+                {commentCount.length}{" "}
+                {commentCount.length === 1 ? "comment" : "comments"}
               </Text>
             )}
           </div>
@@ -118,7 +119,9 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
           </IconButton>
         </div>
 
-        {showComments && <CommentSection id={_id} />}
+        {showComments && (
+          <CommentList id={_id} onAddComment={setCommentCount} />
+        )}
       </li>
     );
   }
