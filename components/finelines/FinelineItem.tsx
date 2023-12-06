@@ -72,16 +72,18 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
           </div>
           <Text className="py-2">{text}</Text>
           {tags && (
-            <small className="flex gap-1">
-              Tags:
-              <div className="flex gap-2">
-                {tags.map((tag, index) => (
-                  <p key={index}>{tag}</p>
-                ))}
-              </div>
-            </small>
+            <div className="flex gap-1 items-center">
+              {tags.map((tag, index) => (
+                <span
+                  className="py-1 px-3 text-violet-500 text-xs rounded-full bg-violet-200"
+                  key={index}
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
           )}
-          <div className="flex justify-between text-sm pt-1">
+          <div className="flex justify-between text-sm mt-6">
             <Text>
               {likeCount.length > 1
                 ? `${likeCount.length} likes`
