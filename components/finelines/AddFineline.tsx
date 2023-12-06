@@ -84,7 +84,7 @@ const AddFineline = ({ isOpen, onClose }: Prop) => {
       addToast({
         title: "Your pickup line has been submitted for review.",
         position: "top",
-        href: `/finelines/${data._id}`,
+        href: `/pending`,
       });
     } catch (error) {
       addToast({
