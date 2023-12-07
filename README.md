@@ -75,8 +75,6 @@ For more information on the importance of a professional README for your reposit
 
 # 📖 Finelines <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
-
 **Finelines** is a web application where you can find a currated collection of conversation starters and puckup lines, wether you're aiming for a good laugh with your favorite person, or a genuine connection with an acquaintance.
 
 ## 🛠 Built With <a name="built-with"></a>
@@ -87,8 +85,6 @@ For more information on the importance of a professional README for your reposit
 - Express
 
 ### Tech Stack <a name="tech-stack"></a>
-
-> Describe the tech stack and include only the relevant sections that apply to your project.
 
 <details>
   <summary>Client</summary>
@@ -126,8 +122,6 @@ For more information on the importance of a professional README for your reposit
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
 - **Sumbit your own line to be reviwed and approved**
 - **Like and drop comment under a fineline**
 - **Export fineline as JPG**
@@ -138,8 +132,6 @@ For more information on the importance of a professional README for your reposit
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
-
 - [Live Demo Link](https://finelines-bice.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -147,8 +139,6 @@ For more information on the importance of a professional README for your reposit
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
-
-> Describe how a new developer could make use of your project.
 
 To get a local copy up and running, follow these steps.
 
@@ -255,8 +245,6 @@ Example command:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
-
 👤 **Author1**
 
 - GitHub: [@Superfly101](https://github.com/Superfly101)
@@ -268,8 +256,6 @@ Example command:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-> Describe 1 - 3 features you will add to the project.
 
 - [ ] **Users get notified whenever their submitted line has been approved**
 - [ ] **Like and reply to comments under finelines**
@@ -290,8 +276,6 @@ Feel free to check the [issues page](../../issues/).
 <!-- SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
-
-> Write a message to encourage readers to support your project
 
 If you like this project kindly leave a star.
 
