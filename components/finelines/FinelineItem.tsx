@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import CommentList from "../comments/CommentList";
 import CommentIcon from "../icons/CommentIcon";
 import LikeIcon from "../icons/LikeIcon";
-import ShareIcon from "../icons/ShareIcon";
+import { DownloadIcon } from "@chakra-ui/icons";
 import IconButton from "../ui/IconButton";
 import FinelineMenu from "./FinelineMenu";
 
@@ -57,7 +57,36 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
 
       setLikeCount(data.likes);
     };
-    const handleShare = () => {};
+    const handleExport = async () => {
+      try {
+        const res = await fetch(`${apiUrl}/pickup-lines/${_id}/export`);
+
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        // The image is returned as a Blob
+        const blob = await res.blob();
+
+        // Create a local URL for the image
+        const imageUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = imageUrl;
+        link.download = "fineline.jpeg";
+
+        // Append the link to the body
+        document.body.appendChild(link);
+
+        // Programmatically click the link to start the download
+        link.click();
+
+        // Remove the link from the body
+        document.body.removeChild(link);
+      } catch (error) {
+        addToast({ status: "error", title: (error as Error).message });
+      }
+    };
 
     return (
       <li
@@ -114,8 +143,8 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
           >
             Comment
           </IconButton>
-          <IconButton onClick={handleShare} icon={<ShareIcon />}>
-            Share
+          <IconButton onClick={handleExport} icon={<DownloadIcon />}>
+            Export
           </IconButton>
         </div>
 
