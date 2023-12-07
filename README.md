@@ -75,7 +75,7 @@ For more information on the importance of a professional README for your reposit
 
 # 📖 Finelines <a name="about-project"></a>
 
-**Finelines** is a web application where you can find a currated collection of conversation starters and puckup lines, wether you're aiming for a good laugh with your favorite person, or a genuine connection with an acquaintance.
+**Finelines** is a web application where you can find a curated collection of conversation starters and pickup lines, whether you're aiming for a good laugh with your favorite person, or a genuine connection with an acquaintance.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -122,9 +122,9 @@ For more information on the importance of a professional README for your reposit
 
 ### Key Features <a name="key-features"></a>
 
-- **Sumbit your own line to be reviwed and approved**
-- **Like and drop comment under a fineline**
-- **Export fineline as JPG**
+- **Submit your line to be reviewed and approved**
+- **Like and drop a comment under a fineline**
+- **Export finelines as JPG**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -144,7 +144,7 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need following:
+In order to run this project you need the following:
 
 - [Node.js](https://nodejs.org/)
 - [PNPM](https://pnpm.io/)
@@ -259,7 +259,7 @@ Example command:
 
 - [ ] **Users get notified whenever their submitted line has been approved**
 - [ ] **Like and reply to comments under finelines**
-- [ ] **AI Chatbot to generate lines based on user's scenario and request**
+- [ ] **AI Chatbot to generate lines based on the user's scenario and request**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
