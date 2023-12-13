@@ -65,15 +65,14 @@ const FinelineItem = React.forwardRef<HTMLLIElement, Prop>(
           throw new Error("Network response was not ok");
         }
 
-        // The image is returned as a Blob
-        const blob = await res.blob();
+        // The image is returned as a data URL
+        const { exportUrl } = await res.json();
 
-        // Create a local URL for the image
-        const imageUrl = URL.createObjectURL(blob);
+        console.log(exportUrl);
 
         const link = document.createElement("a");
-        link.href = imageUrl;
-        link.download = "fineline.jpeg";
+        link.href = exportUrl;
+        link.download = "fineline.png";
 
         // Append the link to the body
         document.body.appendChild(link);
