@@ -9,6 +9,7 @@ import {
   Input,
   FormErrorMessage,
   Heading,
+  Checkbox,
 } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -19,6 +20,7 @@ import MyButton from "./ui/Button";
 const Login = () => {
   const userRef = useRef<HTMLInputElement>(null!);
   const [password, setPassword] = useState("");
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -97,8 +99,9 @@ const Login = () => {
 
             <Input
               isInvalid={isError}
-              type="password"
+              type={isShowPassword ? "text" : "password"}
               placeholder="Enter Password"
+              value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
                 setIsError(false);
@@ -106,6 +109,9 @@ const Login = () => {
             />
             <FormErrorMessage>Password is required</FormErrorMessage>
           </FormControl>
+          <Checkbox onChange={() => setIsShowPassword((current) => !current)}>
+            Show password
+          </Checkbox>
 
           <div className="flex flex-col py-2 gap-2">
             <MyButton
@@ -116,6 +122,17 @@ const Login = () => {
               className="bg-blue hover:bg-blue-300"
             >
               Sign in
+            </MyButton>
+            <p className="text-center">or</p>
+            <MyButton
+              type="button"
+              color="yellow"
+              onClick={() => {
+                userRef.current.value = "johndoe@example.com";
+                setPassword("@1Password");
+              }}
+            >
+              Use Johndoe credentials
             </MyButton>
 
             <small className="text-center font-[500]">
