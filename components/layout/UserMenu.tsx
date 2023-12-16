@@ -8,13 +8,11 @@ import {
   Button,
   Avatar,
 } from "@chakra-ui/react";
-import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { User } from "@/types/User";
 import { signOut } from "next-auth/react";
 const UserMenu = ({ user }: { user: User | undefined }) => {
-  // const { logout } = useLogout();
-
   const handleLogout = () => {
     signOut();
   };
@@ -23,9 +21,6 @@ const UserMenu = ({ user }: { user: User | undefined }) => {
     <div className="flex gap-4">
       {user && (
         <>
-          <div className="flex items-center cursor-pointer">
-            <BellIcon fontSize="2xl" />
-          </div>
           <Menu>
             <MenuButton
               as={Button}
@@ -37,17 +32,10 @@ const UserMenu = ({ user }: { user: User | undefined }) => {
             </MenuButton>
             <MenuList>
               <MenuGroup title={`Signed in as ${user.username}`}>
-                <MenuItem as={Link} href="/profile">
-                  Profile
-                </MenuItem>
-                <MenuItem as={Link} href="/bookmark">
-                  Bookmarks
-                </MenuItem>
                 <MenuItem as={Link} href="/pending">
                   Pending approvals
                 </MenuItem>
-                <MenuDivider />
-                <MenuItem>Help</MenuItem>
+
                 <MenuDivider />
                 <MenuItem onClick={handleLogout}>Sign out</MenuItem>
               </MenuGroup>

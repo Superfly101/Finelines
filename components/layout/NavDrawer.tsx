@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 type Prop = {
   isOpen: boolean;

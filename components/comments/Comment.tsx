@@ -9,8 +9,6 @@ const CommentItem = ({ user, comment }: Prop) => {
       <div className="w-full flex flex-col gap-2 py-2 pb-4 px-3 rounded-md border-b">
         <Text className="font-semibold">{user}</Text>
         <Text>{comment}</Text>
-
-        <div>Like | Reply</div>
       </div>
     </li>
   );

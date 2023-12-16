@@ -12,8 +12,6 @@ const Header = () => {
 
   const { data: session } = useSession();
 
-  const active = "text-blue underline underline-offset-4";
-
   return (
     <>
       <header className="sticky top-0 z-20 py-4 px-4 flex items-center justify-between md:px-8 backdrop-blur-lg">
