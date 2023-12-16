@@ -43,7 +43,7 @@ const CommentList = ({ id, onAddComment }: Prop) => {
         <LoadingSpinner />
       ) : (
         <ul>
-          {comments.length ? (
+          {comments?.length ? (
             comments.map((comment) => (
               <CommentItem key={comment._id} {...comment} />
             ))
