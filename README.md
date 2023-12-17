@@ -43,8 +43,6 @@ For more information on the importance of a professional README for your reposit
 
 <div align="center">
 
-  <h3><b>MASL FUTMINNA README Template</b></h3>
-
 </div>
 
 <!-- TABLE OF CONTENTS -->
