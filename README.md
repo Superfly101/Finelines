@@ -43,8 +43,6 @@ For more information on the importance of a professional README for your reposit
 
 <div align="center">
 
-  <h3><b>MASL FUTMINNA README Template</b></h3>
-
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -177,28 +175,27 @@ Example commands:
 
 ### Install
 
-Install this project with:
+Install project dependencies:
 
 ```sh
 cd Finelines
 pnpm install
 ```
 
-<!--
-Example command:
-
-```sh
-  cd my-project
-  gem install
-```
---->
-
 ### Usage
 
-#### Developement Server
+#### Development Server
 
-To run project's development server:
+To run the project's development server:
 
+#### NOTE: A backend development server is needed with a database
+Workaround: 
+1. Open the index.ts file in the constants folder (/constants/index.ts)
+2. Update apiUrl with
+ ```bash
+export const apiUrl = "https://finelines.azurewebsites.net/api";
+```
+3. Start front-end development server:
 ```sh
     pnpm dev
     # or
@@ -209,7 +206,7 @@ To run project's development server:
 
 #### Build
 
-To build project:
+To build the project:
 
 ```sh
     pnpm build
